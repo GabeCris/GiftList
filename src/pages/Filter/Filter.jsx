@@ -5,24 +5,26 @@ import { iconsFilterList } from "./List";
 import { useFilter } from "../../contexts/FilterContext/FilterContext";
 
 const InitialPage = () => {
-    const {selected, setSelected} = useFilter();
+    const { selected, setSelected } = useFilter();
     return (
         <Layout>
             <h2 className="layout-content-title">Filtre por categoria</h2>
             <section className="layout-filter-container">
-                {iconsFilterList.map(({label, icon}) => (
+                {iconsFilterList.map(({ label, icon }) => (
                     <>
                         <label
                             className="layout-filter-item"
                             htmlFor={label}
-                            onClick={()=> setSelected(label)}
+                            onClick={() =>
+                                setSelected({ label: label, icon: icon })
+                            }
                         >
                             <input
                                 type="radio"
                                 value={icon}
                                 name={"filter"}
                                 id={label}
-                                checked={selected === label}
+                                checked={selected.label === label}
                             />
                             <div className="layout-filter-box">{icon}</div>
                             <p className="layout-filter-label">{label}</p>
@@ -30,7 +32,7 @@ const InitialPage = () => {
                     </>
                 ))}
             </section>
-            <Button label={"Filtrar"} />
+            <Button label={"Filtrar"} url={"products"}/>
         </Layout>
     );
 };
