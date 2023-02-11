@@ -24,7 +24,7 @@
     }
     &-content{
         width: 100%;
-        height: 100%;
+        height: calc(100vh - 87px);
         padding-inline: 20px;
         padding-top: 30px;
         background-color: $white-color;
