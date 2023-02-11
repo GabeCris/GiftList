@@ -101,3 +101,95 @@ color: #000000;
         }
     }
 }
+
+.filter-container {
+    background-color: $white-color;
+    z-index: 10;
+    width: 100vw;
+    position: sticky;
+    border-radius: 30px 30px 0 0;
+    padding: 20px;
+    padding-top: 0;
+    @include centralize(space-between);
+    padding-bottom: 10px;
+    .filter-button {
+        width: 158px;
+        height: 50px;
+        border-radius: 10px;
+        background-color: $light-gray-color;
+        @include centralize;
+        gap: 12px;
+        font-weight: 600;
+font-size: 16px;
+line-height: 20px;
+text-transform: uppercase;
+letter-spacing: 0.08em;
+color: #C75E6D;
+    }
+}
+
+.filter {
+    &-content {
+        @include centralize(flex-end);
+        gap: 12px;
+        position: relative;
+    }
+    &-wrapper {
+        border-radius: 10px;
+        @include centralize;
+        background-color: $light-gray-color;
+        overflow-y: scroll;
+        max-height: 175px;
+        z-index: 10;
+        top: 50px;
+        left: 0;
+        width: 158px;
+        position: absolute;
+        justify-content: flex-start;
+        scroll-snap-type: y mandatory;
+        flex-direction: column;
+        span {
+            color: $dark-gray-color;
+            font-weight: 500;
+            border-radius: 10px;
+            min-height: calc(175px / 3);
+            scroll-snap-align: start;
+            width: 100%;
+            @include centralize;
+            text-align: center;
+        }
+    }
+    &-active {
+        background-color: $dark-gray-color;
+        border: 3px solid $light-gray-color;
+        color: $white-color !important;
+    }
+    &-input {
+        height: 55px;
+        .span-input {
+            left: auto !important;
+        }
+    }
+    &-icon {
+        padding: 10px;
+        height: 50px;
+        border-radius: 10px;
+        background-color: $primary-color;
+        @include centralize;
+        gap: 12px;
+        svg {
+            filter: brightness(100);
+            width: 25px;
+            height: 25px;
+            &:last-child{
+                width: 13px;
+                height: 13px;
+            }
+        }
+    }
+}
+
+.products-container{
+    width: 100%;
+    padding-top: 20px;
+}

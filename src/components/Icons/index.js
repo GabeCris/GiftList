@@ -11,5 +11,7 @@ export { default as BathtubIcon } from './BathtubIcon';
 export { default as TelevisionIcon } from './TelevisionIcon';
 export { default as WasherIcon } from './WasherIcon';
 export { default as ConfirmIcon } from './ConfirmIcon';
+export { default as FilterIcon } from './FilterIcon';
+export { default as CloseIcon } from './CloseIcon';
 
 export const iconsFilterList = [ Bathtub, BedIcon, PanIcon, TelevisionIcon, WasherIcon, ConfirmIcon]
