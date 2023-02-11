@@ -1,0 +1,12 @@
+@mixin title($color: $black-color, $size: 22px, $weight: 600) {
+    font-size: $size;
+    color: $color;
+    font-weight: $weight;
+}
+
+@mixin centralize($justify: center, $align: center, $direction: row) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+}
