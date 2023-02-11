@@ -17,10 +17,10 @@ const Products = () => {
                 <ShelfProduct />
                 <span className="shadow"></span>
             </section>
-            <p>
-                <b>Total:</b> 6 produtos encontrados
-            </p>
-            <Button label={"Voltar"} url={"filter"}></Button>
+            <section className="info-button">
+                <p><b>Total:</b> 6 produtos encontrados</p>
+                <Button url={"filter"} logout></Button>
+            </section>
         </Layout>
     );
 };

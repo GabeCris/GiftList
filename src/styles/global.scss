@@ -196,7 +196,7 @@ color: #C75E6D;
 
 .products-container{
     width: 100%;  
-    margin-block: 10px;
+    -webkit-margin-bottom-collapse: 10px;
     gap: 30px 12px;
     flex-wrap: wrap;
     overflow-y: auto;
@@ -205,7 +205,7 @@ color: #C75E6D;
     .shadow{
         background: linear-gradient(
             180deg,
-            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0) 50%,
             #ffffff 100%
           );
           position: sticky;
@@ -262,7 +262,26 @@ color: #C75E6D;
             }
         }
     }
-    ~ .layout-button{
-        margin-block: 20px;
+}
+
+.info-button{
+    @include centralize($justify: space-between);
+    margin-block: 20px;
+    width: 100%;
+    p{
+        font-size: 14px;
+    }
+    button{
+        margin: 0;
+        width: fit-content;
+        padding-inline: 20px;
+        gap: 10px;
+        background-color: $light-gray-color;
+        a:empty{
+            display: none;
+        }
+        svg{
+            height: 25px;
+        }
     }
 }

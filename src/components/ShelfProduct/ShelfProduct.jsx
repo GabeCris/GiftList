@@ -6,7 +6,7 @@ const ShelfProduct = () => {
         "https://www.havan.com.br/media/catalog/product/cache/b23e5304d11dff00750c3e92e4b038fa/t/o/toalha-de-rosto-toscana-havan_604489.jpg";
     const name = "Toalha de rosto";
     const price = 59.46;
-    
+
     return (
         <div className="shelfProduct">
             <img src={srcImage} className="shelfProduct-image" />
