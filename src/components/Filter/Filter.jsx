@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useFilter } from "../../contexts/FilterContext/FilterContext";
-import Button from "../Button";
 import { iconsFilterList } from "../../pages/Filter/List";
 import { CloseIcon, ConfirmIcon, FilterIcon } from "../Icons";
 

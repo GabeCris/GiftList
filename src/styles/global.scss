@@ -7,6 +7,11 @@
     margin: 0;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+button{
+    user-select: none;
 }
 
 .layout{
@@ -30,6 +35,9 @@
         padding-top: 30px;
         background-color: $white-color;
         border-radius: 30px 30px 0 0;
+        &:has(.products-container){
+            padding-inline: 0;
+        }
         @include centralize($direction: column, $justify: flex-start);
         &-title{
             @include title($color: $black-color);
@@ -37,6 +45,51 @@
         }
         &:has(.products-container){
             padding-top: 20px;
+        }
+    }
+    &-modal{
+        background: #00000060;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        z-index: 95;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        &-box{
+            width: 100%;
+            gap: 15px;
+            padding: 30px;
+            background-color: $white-color;
+            border-radius: 10px;
+            @include centralize($direction: column);
+            button{
+                margin-top: 0;
+                text-transform: uppercase;
+                width: fit-content;
+                padding: 15px 30px;
+                font-size: 12px;
+                line-height: 15px;
+                letter-spacing: 0.15em;
+            }
+        }
+        &-title, &-text{
+            font-weight: 600;
+            font-size: 22px;
+            line-height: 27px;
+            text-align: center;
+            letter-spacing: 0.05em;
+
+            color: #000000;
+        }
+        &-text{
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            letter-spacing: 0.05em;
         }
     }
     &-filter{
@@ -87,13 +140,13 @@ color: #000000;
         margin-top: 30px;
         width: 100%;
         height: 50px;
-        min-height: 50px;
+        max-height: 50px;
         border-radius: 10px;
         background-color: $primary-color;
         @include centralize;
         outline: none;
         border: none;
-        a{
+        a, &{
             color: $white-color;
             font-weight: 600;
             font-size: 16px;
@@ -103,6 +156,20 @@ color: #000000;
             height: 100%;
             @include centralize;
             text-decoration: none;
+        }
+        &-label{
+            text-transform: uppercase;
+            margin-block: 10px !important;
+            height: fit-content !important;
+            width: 100%;
+            background: none;
+            border: none;
+            font-weight: 700;
+font-size: 12px;
+line-height: 15px;
+
+letter-spacing: 0.05em;
+color: $dark-gray-color;
         }
     }
 }
@@ -200,6 +267,7 @@ color: #C75E6D;
     gap: 30px 12px;
     flex-wrap: wrap;
     overflow-y: auto;
+    padding-inline: 20px;
     @include centralize($justify: space-between);
     position: relative;
     .shadow{
@@ -253,12 +321,101 @@ color: #C75E6D;
             color: #C75E6D;
         }
         button{
-            height: 40px;
+            height: 45px;
             margin-top: 10px;
             a{
                 font-size: 12px;
                 line-height: 15px;
                 text-transform: uppercase;
+            }
+        }
+        &Checkbox{
+            @include centralize;
+            gap: 6px;
+            font-weight: 600;
+font-size: 12px;
+letter-spacing: 0.05em;
+color: #C75E6D;
+            &::before{
+                content: '';
+                @include centralize;
+                width: 15px;
+                height: 15px;
+                border-radius: 3px;
+                background-color: $white-color;
+                border: 2px solid $primary-color;
+            }
+            &::after{
+                content: "Reservar";
+            }
+            &:has(
+                input:checked
+            ){
+                &::before{
+                content: 'X';
+                    color: $white-color;
+                    background-color: $primary-color;
+                }
+                &::after{
+                    content: "Você reservou!";
+                }
+            }
+   
+            input{
+                display: none;
+            }
+        }
+        &Reservated{
+            background-color: #ADADAD;
+            .shelfProduct{
+                &-name{
+                    color: $white-color;
+                }
+                &-price{
+                    color: $white-color;
+
+                }
+            }
+            .layout-button{
+                background: none;
+                border: 1px solid $light-gray-color;
+                a{
+                    color: $white-color;
+                }
+                &-label{
+                    display: none;
+                }
+            }
+        }
+        &Wish{
+            background-color: $primary-color;
+            position: relative;
+            .giftBox{
+                position: absolute;
+                top: -5px;
+                right: -5px;
+                width: 39px;
+                height: 39px;
+                background-color: #ADADAD;
+                border-radius: 5px;
+                @include centralize;
+            }
+            .shelfProduct{
+                &-name{
+                    color: $white-color;
+                }
+                &-price{
+                    color: $white-color;
+                }
+            }
+            .layout-button{
+                background: $white-color;
+                a{
+                    color: $primary-color;
+                }
+                &-label{
+                    display: none;
+                }
             }
         }
     }
@@ -268,12 +425,14 @@ color: #C75E6D;
     @include centralize($justify: space-between);
     margin-block: 20px;
     width: 100%;
+    padding-inline: 20px;
     p{
         font-size: 14px;
     }
     button{
         margin: 0;
         width: fit-content;
+        height: 40px;
         padding-inline: 20px;
         gap: 10px;
         background-color: $light-gray-color;
