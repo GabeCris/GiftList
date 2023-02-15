@@ -2,10 +2,14 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { LogoutIcon } from "../Icons";
 
-const Button = ({ label, url = "#", logout }) => {
+const Button = ({ label, url = "#", logout, ...props }) => {
     return (
-        <button className="layout-button">
-            <Link to={url !== "#" ? "/" + url : url}>{label}</Link>
+        <button
+            {...props}
+            className="layout-button"
+            onClick={()=> window.location.href = url}
+        >
+            {label}
             {logout && <LogoutIcon />}
         </button>
     );
