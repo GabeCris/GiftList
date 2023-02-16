@@ -1,7 +1,7 @@
 import React from "react";
 import { iconsFilterList } from "../../pages/Filter/List";
 
-const CategoryRow = () => {
+const CategoryRow = ({selected, setSelected}) => {
     return (
         <section className="input-category-container">
             <p className="inputLabel">Categoria do produto</p>
@@ -16,9 +16,11 @@ const CategoryRow = () => {
                                 >
                                     <input
                                         type="radio"
-                                        value={icon}
+                                        value={label}
                                         name={"category"}
                                         id={label}
+                                        checked={selected === label ? true : false}
+                                        onClick={(e)=> setSelected(e.target.value)}
                                     />
                                     <div className="input-category-box">
                                         {icon}
