@@ -4,8 +4,15 @@ import CategoryRow from "../../components/CategoryRow";
 import Input from "../../components/Input";
 import Layout from "../../components/Layout/Layout";
 import { useProduct } from "../../contexts/ProductContext";
+import { db } from "../../config/firebase";
+import { addDoc, collection } from "firebase/firestore";
+import formatPrice from "../../utils/formatPrice";
+import { useModal } from "../../contexts/ModalContext";
 
 const ProductRegistration = () => {
+    const { changeModal } = useModal();
+    const usersCollectionRef = collection(db, "products");
+    const [isLoading, setIsLoading] = useState(false);
     const {
         productName,
         setProductName,
@@ -17,13 +24,38 @@ const ProductRegistration = () => {
         setProductUrl,
         productUrlImage,
         setProductUrlImage,
+        clearInputs,
     } = useProduct();
     const defaultImage = "../assets/preview.svg";
 
-    const handleSubmit = useCallback((e) => {
-        e.preventDefault();
-        console.log("teste");
-    }, []);
+    const handleChange = (event, value) => {
+        event.preventDefault();
+        setProductPrice(value);
+    };
+
+    const handleSubmit = useCallback(
+        async (e) => {
+            setIsLoading(true);
+            e.preventDefault();
+            await addDoc(usersCollectionRef, {
+                productName,
+                productCategory,
+                productPrice,
+                productUrl,
+                productUrlImage,
+            });
+            setIsLoading(false);
+            changeModal("registered");
+            clearInputs();
+        },
+        [
+            productName,
+            productCategory,
+            productPrice,
+            productUrl,
+            productUrlImage,
+        ]
+    );
 
     return (
         <Layout title="Cadastro">
@@ -43,12 +75,12 @@ const ProductRegistration = () => {
                 ></CategoryRow>
                 <div className="input-price">
                     <Input
-                        price={true}
+                        price="true"
                         name="Preço do produto (R$)"
                         placeholder="Informe o preço"
                         required
                         value={productPrice}
-                        onChange={(e) => setProductPrice(e.target.value)}
+                        onChange={handleChange}
                     />
                     <img
                         src={productUrlImage || defaultImage}
@@ -61,7 +93,7 @@ const ProductRegistration = () => {
                         placeholder="Informe a url"
                         required
                         type={"text"}
-                        autoComplete={false}
+                        autoComplete="false"
                         value={productUrl}
                         onChange={(e) => setProductUrl(e.target.value)}
                     ></Input>
@@ -70,13 +102,18 @@ const ProductRegistration = () => {
                         placeholder="Informe a url"
                         required
                         type={"text"}
-                        autoComplete={false}
+                        autoComplete="false"
                         value={productUrlImage}
                         onChange={(e) => setProductUrlImage(e.target.value)}
                     ></Input>
                 </div>
-                <Button label={"ADICIONAR"} type="submit"></Button>
+                <Button
+                    label={"ADICIONAR"}
+                    type="submit"
+                    isLoading={isLoading}
+                ></Button>
             </form>
+            <Button label={"Voltar"} secondary={true} url={"/"}></Button>
         </Layout>
     );
 };

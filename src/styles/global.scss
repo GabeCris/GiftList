@@ -113,6 +113,7 @@ button{
         }
         }
         &-box{
+            cursor: pointer;
             @include centralize;
             width: 99px;
             height: 99px;
@@ -137,6 +138,7 @@ color: #000000;
         }
     }
     &-button{
+        cursor: pointer;
         margin-top: 30px;
         width: 100%;
         height: 50px;
@@ -167,9 +169,22 @@ color: #000000;
             font-weight: 700;
 font-size: 12px;
 line-height: 15px;
-
+cursor: pointer;
 letter-spacing: 0.05em;
 color: $dark-gray-color;
+        }
+        &-secondary{
+            width: fit-content;
+            height: fit-content;
+            color: $primary-color;
+            background: none;
+            font-weight: 700;
+            line-height: 16px;
+            border-radius: 0;
+            border-bottom: 2px solid $primary-color;
+            a{
+                color: $primary-color;
+            }
         }
     }
 }
@@ -185,6 +200,7 @@ color: $dark-gray-color;
     @include centralize(space-between);
     padding-bottom: 10px;
     .filter-button {
+        cursor: pointer;
         width: 158px;
         height: 50px;
         border-radius: 10px;
@@ -221,6 +237,7 @@ color: #C75E6D;
         scroll-snap-type: y mandatory;
         flex-direction: column;
         span {
+            cursor: pointer;
             color: $dark-gray-color;
             font-weight: 500;
             border-radius: 10px;
@@ -243,6 +260,7 @@ color: #C75E6D;
         }
     }
     &-icon {
+        cursor: pointer;
         padding: 10px;
         height: 50px;
         border-radius: 10px;
@@ -323,7 +341,7 @@ color: #C75E6D;
         button{
             height: 45px;
             margin-top: 10px;
-            a{
+            &, a{
                 font-size: 12px;
                 line-height: 15px;
                 text-transform: uppercase;
@@ -366,7 +384,7 @@ color: #C75E6D;
             }
         }
         &Reservated{
-            background-color: #ADADAD;
+            background-color: $dark-gray-color;
             .shelfProduct{
                 &-name{
                     color: $white-color;
@@ -379,7 +397,7 @@ color: #C75E6D;
             .layout-button{
                 background: none;
                 border: 1px solid $light-gray-color;
-                a{
+                &, a{
                     color: $white-color;
                 }
                 &-label{
@@ -396,7 +414,7 @@ color: #C75E6D;
                 right: -5px;
                 width: 39px;
                 height: 39px;
-                background-color: #ADADAD;
+                background-color: $dark-gray-color;
                 border-radius: 5px;
                 @include centralize;
             }
@@ -410,7 +428,7 @@ color: #C75E6D;
             }
             .layout-button{
                 background: $white-color;
-                a{
+                &, a{
                     color: $primary-color;
                 }
                 &-label{
@@ -516,6 +534,7 @@ color: #C75E6D;
             @include centralize($justify: space-between);
         }
         &-item{
+            cursor: pointer;
             input{
                 display: none;
             
@@ -543,3 +562,23 @@ color: #C75E6D;
         }
     }
 }
+
+form{
+    margin-bottom: 30px;
+}
+
+@keyframes vtex-spinner-rotate {
+  from {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0) rotate(360deg);
+  }
+}
+
+.rotate {
+  transform-origin: 50% 50%;
+  animation: vtex-spinner-rotate 0.5s infinite linear;
+}
+

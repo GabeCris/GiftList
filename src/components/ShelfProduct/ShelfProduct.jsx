@@ -24,7 +24,10 @@ const ShelfProduct = ({ type }) => {
             {!type && <Button label="Ver no site" />}
             {type === "Reservated" && <Button label="Reservado" />}
             {type === "Wish" && <Button label="Desfazer" />}
-            <button className="layout-button-label" onClick={changeModal}>
+            <button
+                className="layout-button-label"
+                onClick={() => changeModal("reserved")}
+            >
                 Reservar
             </button>
         </div>

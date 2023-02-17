@@ -1,15 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useModal } from "../../contexts/ModalContext";
+import { ModalList } from "./ModalList";
 
-const Modal = () => {
+const Modal = ({buildModal}) => {
     const { showModal, changeModal } = useModal();
+    const [modalContent, setModalContent] = useState();
+
+    useEffect(() => {
+    setModalContent(ModalList?.find((item) => item?.status === buildModal));
+    console.log(buildModal, "buildmodal")
+  }, [buildModal, showModal]);
+
     return showModal ? (
         <div className="layout-modal">
             <div className="layout-modal-box">
-                <h3 className="layout-modal-title">Atenção</h3>
+                <h3 className="layout-modal-title">{modalContent?.title}</h3>
                 <p className="layout-modal-text">
-                    A reserva neste website é apenas para controle e organização
-                    dos noivos, não tendo relação com as lojas terceiras.
+                    {modalContent?.text}
                 </p>
                 <button className="layout-button" onClick={changeModal}>
                     Entendi

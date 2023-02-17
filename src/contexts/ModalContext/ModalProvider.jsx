@@ -5,11 +5,12 @@ import { ModalContext } from "./ModalContext";
 
 function ModalProvider({ children }) {
     const [showModal, setShowModal] = useState(false);
+     const [buildModal, setBuildModal] = useState('');
    
-    const changeModal = useCallback(() => {
+    const changeModal = useCallback((data) => {
+        setBuildModal(data);
         setShowModal(!showModal);
-        console.log("ABRIU", showModal)
-    }, [showModal]);
+    }, [showModal, buildModal]);
     
     return (
         <ModalContext.Provider
@@ -18,7 +19,7 @@ function ModalProvider({ children }) {
                 showModal
             }}
         >
-            <Modal/>
+            <Modal buildModal={buildModal}/>
             {children}
         </ModalContext.Provider>
     );

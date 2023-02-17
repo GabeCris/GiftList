@@ -1,15 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { LogoutIcon } from "../Icons";
+import { useNavigate } from "react-router-dom";
+import Spinner from "../Spinner";
 
-const Button = ({ label, url = "#", logout, ...props }) => {
+const Button = ({
+    label,
+    url = "#",
+    logout,
+    isLoading,
+    secondary,
+    ...props
+}) => {
+    const navigate = useNavigate();
     return (
         <button
             {...props}
-            className="layout-button"
-            onClick={()=> window.location.href = url}
+            className={`layout-button ${
+                secondary && "layout-button-secondary"
+            }`}
+            onClick={() => navigate(url)}
         >
-            {label}
+            {isLoading ? <Spinner /> : label}
             {logout && <LogoutIcon />}
         </button>
     );

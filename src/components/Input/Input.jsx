@@ -16,6 +16,7 @@ const currencyConfig = {
 };
 
 function Input(props) {
+
     return (
         <div className={"inputContainer"}>
             <label htmlFor={props.name} className={"inputLabel"}>

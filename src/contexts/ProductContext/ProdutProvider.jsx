@@ -8,6 +8,15 @@ function ProductProvider({ children }) {
     const [productUrl, setProductUrl] = useState("");
     const [productUrlImage, setProductUrlImage] = useState("");
 
+    const clearInputs = () => {
+        setProductName("");
+        setProductCategory("Cozinha");
+        setProductPrice("");
+        setProductUrl("");
+        setProductUrlImage("");
+        console.log('limpou inputs')
+    };
+
     return (
         <ProductContext.Provider
             value={{
@@ -20,7 +29,8 @@ function ProductProvider({ children }) {
                 productUrl,
                 setProductUrl,
                 productUrlImage,
-                setProductUrlImage
+                setProductUrlImage,
+                clearInputs
             }}
         >
             {children}
