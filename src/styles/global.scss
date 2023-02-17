@@ -36,6 +36,7 @@ button{
         background-color: $white-color;
         border-radius: 30px 30px 0 0;
         &:has(.products-container){
+            padding-top: 10px;
             padding-inline: 0;
         }
         @include centralize($direction: column, $justify: flex-start);
@@ -43,9 +44,7 @@ button{
             @include title($color: $black-color);
             margin-bottom: 30px;
         }
-        &:has(.products-container){
-            padding-top: 20px;
-        }
+
     }
     &-modal{
         background: #00000060;
@@ -283,6 +282,7 @@ color: #C75E6D;
     width: 100%;  
     -webkit-margin-bottom-collapse: 10px;
     gap: 30px 12px;
+    padding-top: 6px;
     flex-wrap: wrap;
     overflow-y: auto;
     padding-inline: 20px;
@@ -291,7 +291,7 @@ color: #C75E6D;
     .shadow{
         background: linear-gradient(
             180deg,
-            rgba(255, 255, 255, 0) 50%,
+            rgba(255, 255, 255, 0) 70%,
             #ffffff 100%
           );
           position: sticky;
@@ -301,6 +301,7 @@ color: #C75E6D;
           margin-top: -50px;
     }
     .shelfProduct{
+        position: relative;
         width: 157px;
         background-color: $light-gray-color;
         border-radius: 10px;
@@ -384,21 +385,17 @@ color: #C75E6D;
             }
         }
         &Reservated{
-            background-color: $dark-gray-color;
             .shelfProduct{
-                &-name{
-                    color: $white-color;
-                }
                 &-price{
-                    color: $white-color;
+                    color: $dark-gray-color;
 
                 }
             }
             .layout-button{
                 background: none;
-                border: 1px solid $light-gray-color;
+                border: 1px solid $dark-gray-color;
                 &, a{
-                    color: $white-color;
+                    color: $dark-gray-color;
                 }
                 &-label{
                     display: none;
@@ -407,17 +404,7 @@ color: #C75E6D;
         }
         &Wish{
             background-color: $primary-color;
-            position: relative;
-            .giftBox{
-                position: absolute;
-                top: -5px;
-                right: -5px;
-                width: 39px;
-                height: 39px;
-                background-color: $dark-gray-color;
-                border-radius: 5px;
-                @include centralize;
-            }
+          
             .shelfProduct{
                 &-name{
                     color: $white-color;
@@ -436,16 +423,64 @@ color: #C75E6D;
                 }
             }
         }
+        .giftBox{
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 39px;
+            height: 39px;
+            background-color: $primary-color;
+            border-radius: 5px;
+            @include centralize;
+            &Animated{
+                animation: shake-lr 2s ease-in-out infinite;
+            }
+        }
+        &Reservated, &Wish{
+            .giftBox{
+                background-color: $dark-gray-color;
+            }
+        }
     }
 }
 
+@keyframes shake-lr {
+    0%,
+    25%,
+    100%{
+        transform: rotate(0deg);
+    }
+    10%,
+    20%
+    {
+        transform: rotate(8deg);
+    }
+    5%,
+    15%
+    {
+        transform: rotate(-8deg);
+    }
+  }
+
 .info-button{
     @include centralize($justify: space-between);
-    margin-block: 20px;
+    margin-block: 15px;
     width: 100%;
     padding-inline: 20px;
     p{
+        line-height: 18px;
         font-size: 14px;
+        margin-right: 20px;
+    }
+    :not(button){
+        svg{
+            height: 18px;
+            width: 18px;
+            padding: 2px;
+            border-radius: 3px;
+            background-color: $primary-color;
+            transform: translateY(5px);
+        }
     }
     button{
         margin: 0;

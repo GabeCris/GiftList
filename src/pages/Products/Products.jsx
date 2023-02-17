@@ -3,6 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import Filter from "../../components/Filter";
 import Button from "../../components/Button";
 import ShelfProduct from "../../components/ShelfProduct";
+import { GiftOpenIcon } from "../../components/Icons";
 
 const Products = () => {
     return (
@@ -15,11 +16,24 @@ const Products = () => {
                 <ShelfProduct type={"Wish"} />
                 <ShelfProduct type={"Reservated"} />
                 <ShelfProduct />
-                <span className="shadow"></span>
+                <ShelfProduct />
+                <ShelfProduct type={"Reservated"} />
+                <ShelfProduct type={"Reservated"} />
+                <ShelfProduct />
+                <ShelfProduct type={"Reservated"} />
+                <ShelfProduct />
+                <ShelfProduct type={"Wish"} />
+                <ShelfProduct type={"Reservated"} />
+                <ShelfProduct />
+                <ShelfProduct />
+                <ShelfProduct type={"Reservated"} />
+                <ShelfProduct />
+                {/* <span className="shadow"></span> */}
             </section>
             <section className="info-button">
                 <p>
-                    <b>Total:</b> 6 produtos encontrados
+                    Clique no <GiftOpenIcon /> <b>presente aberto</b> para
+                    reservar um produto!
                 </p>
                 <Button url={"/filter"} logout></Button>
             </section>

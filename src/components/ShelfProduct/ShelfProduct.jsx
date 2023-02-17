@@ -1,7 +1,7 @@
 import React from "react";
 import { useModal } from "../../contexts/ModalContext";
 import Button from "../Button";
-import { GiftIcon } from "../Icons";
+import { GiftIcon, GiftOpenIcon } from "../Icons";
 
 const ShelfProduct = ({ type }) => {
     const { changeModal } = useModal();
@@ -13,7 +13,14 @@ const ShelfProduct = ({ type }) => {
 
     return (
         <div className={`shelfProduct ${type && "shelfProduct" + type}`}>
-            {type === "Wish" && (
+            {type !== "Wish" && type !== "Reservated" ? (
+                <div
+                    className="giftBox giftBoxAnimated"
+                    onClick={() => changeModal("reservated")}
+                >
+                    <GiftOpenIcon />
+                </div>
+            ) : (
                 <div className="giftBox">
                     <GiftIcon />
                 </div>
@@ -24,12 +31,6 @@ const ShelfProduct = ({ type }) => {
             {!type && <Button label="Ver no site" />}
             {type === "Reservated" && <Button label="Reservado" />}
             {type === "Wish" && <Button label="Desfazer" />}
-            <button
-                className="layout-button-label"
-                onClick={() => changeModal("reserved")}
-            >
-                Reservar
-            </button>
         </div>
     );
 };

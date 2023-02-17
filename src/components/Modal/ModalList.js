@@ -1,6 +1,6 @@
 export const ModalList = [
     {
-        status: "reserved",
+        status: "reservated",
         title: "Atenção",
         text: "A reserva neste website é apenas para controle e organização dos noivos, não tendo relação com as lojas terceiras.",
     },
