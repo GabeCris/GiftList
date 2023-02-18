@@ -9,16 +9,19 @@ const Button = ({
     logout,
     isLoading,
     secondary,
+    external,
     ...props
 }) => {
     const navigate = useNavigate();
     return (
         <button
-            {...props}
             className={`layout-button ${
                 secondary && "layout-button-secondary"
             }`}
-            onClick={() => navigate(url)}
+            onClick={() =>
+                !external ? navigate(url) : window.open(url, "_blank")
+            }
+            {...props}
         >
             {isLoading ? <Spinner /> : label}
             {logout && <LogoutIcon />}

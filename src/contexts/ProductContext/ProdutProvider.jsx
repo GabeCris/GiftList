@@ -14,7 +14,6 @@ function ProductProvider({ children }) {
         setProductPrice("");
         setProductUrl("");
         setProductUrlImage("");
-        console.log('limpou inputs')
     };
 
     return (
