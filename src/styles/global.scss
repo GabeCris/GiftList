@@ -286,6 +286,7 @@ svg{
     -webkit-margin-bottom-collapse: 10px;
     gap: 20px 12px;
     padding-top: 6px;
+    margin-bottom: 75px;
     flex-wrap: wrap;
     overflow-y: auto;
     padding-inline: 20px;
@@ -476,9 +477,12 @@ color: #C75E6D;
 
 .info-button{
     @include centralize($justify: space-between);
-    margin-block: 15px;
     width: 100%;
-    padding-inline: 20px;
+    padding: 15px 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: $white-color;
     p{
         line-height: 18px;
         font-size: 14px;
