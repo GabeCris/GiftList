@@ -6,7 +6,6 @@ import { ModalList } from "./ModalList";
 const Modal = ({ buildModal }) => {
     const { showModal, changeModal } = useModal();
     const [modalContent, setModalContent] = useState();
-    const { changeReserve } = useReserve();
 
     useEffect(() => {
         setModalContent(ModalList?.find((item) => item?.status === buildModal));
@@ -18,8 +17,7 @@ const Modal = ({ buildModal }) => {
                 return (
                     <button
                         className="layout-button"
-                        // onClick={() => window.location.reload()}
-                        onClick={changeModal}
+                        onClick={() => window.location.reload()}
                     >
                         Entendi
                     </button>
@@ -32,7 +30,10 @@ const Modal = ({ buildModal }) => {
                 );
             case "cancelReserve":
                 return (
-                    <button className="layout-button" onClick={changeModal}>
+                    <button
+                        className="layout-button"
+                        onClick={() => window.location.reload()}
+                    >
                         Entendi
                     </button>
                 );

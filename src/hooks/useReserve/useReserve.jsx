@@ -3,9 +3,9 @@ import { useCallback } from "react";
 import { db } from "../../config/firebase";
 
 function useReserve() {
-    const changeReserve = useCallback(async (option, id) => {
+    const changeReserve = useCallback(async (uid, id, status) => {
         const docRef = doc(db, "products", id);
-        await updateDoc(docRef, { userId: option });
+        await updateDoc(docRef, { userId: uid, status: status });
     }, []);
 
     return {

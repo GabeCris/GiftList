@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import { useModal } from "../../contexts/ModalContext";
 import useReserve from "../../hooks/useReserve/useReserve";
 import formatPrice from "../../utils/formatPrice/FormatPrice";
@@ -9,6 +9,13 @@ import { GiftIcon, GiftOpenIcon } from "../Icons";
 const ShelfProduct = ({ props }) => {
     const { changeModal } = useModal();
     const { changeReserve } = useReserve();
+    const [isMyReserve, setIsMyReserve] = useState(false);
+
+    useEffect(() => {
+        if (props.userId == "500") {
+            setIsMyReserve(true);
+        }
+    });
 
     console.log(props.id);
     const changeButton = () => {
@@ -23,10 +30,6 @@ const ShelfProduct = ({ props }) => {
                 );
             case "unavailable":
                 return <Button label="Reservado" />;
-            case "reserved":
-                return (
-                    <Button label="cancelar" onClick={() => cancelReserve()} />
-                );
         }
     };
 
@@ -52,16 +55,20 @@ const ShelfProduct = ({ props }) => {
 
     const makeReserve = () => {
         changeModal("reserve");
-        changeReserve("", props.id);
+        changeReserve("500", props.id, "unavailable");
     };
 
     const cancelReserve = () => {
         changeModal("cancelReserve");
-        changeReserve("500", props.id);
+        changeReserve("", props.id, "available");
     };
 
     return (
-        <div className={`shelfProduct ${"shelfProduct-" + props.status}`}>
+        <div
+            className={`shelfProduct ${"shelfProduct-" + props.status} ${
+                isMyReserve && "shelfProduct-reserved"
+            }`}
+        >
             {changeGiftIcon()}
             <div className="shelfProduct-box-image">
                 <img
@@ -73,7 +80,11 @@ const ShelfProduct = ({ props }) => {
             <p className="shelfProduct-price">
                 {formatPrice(props.productPrice)}
             </p>
-            {changeButton()}
+            {isMyReserve ? (
+                <Button label="cancelar" onClick={() => cancelReserve()} />
+            ) : (
+                changeButton()
+            )}
         </div>
     );
 };
