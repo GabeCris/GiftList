@@ -6,10 +6,13 @@ import ShelfProduct from "../../components/ShelfProduct";
 import { GiftOpenIcon } from "../../components/Icons";
 import { db } from "../../config/firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
+import { useFilter } from "../../contexts/FilterContext";
 
 const Products = () => {
     const usersCollectionsRef = collection(db, "products");
+    const { selected } = useFilter();
     const [products, setProducts] = useState();
+    const [filteredProducts, setFilteredProducts] = useState();
 
     useEffect(() => {
         const getProducts = async () => {
@@ -20,11 +23,23 @@ const Products = () => {
         };
         getProducts();
     }, []);
+
+    useEffect(() => {
+        console.log(selected.label)
+        setFilteredProducts(
+            selected.label !== "Todas"
+                ? products?.filter(
+                      (product) => product.productCategory === selected.label
+                  )
+                : products?.map((product) => product)
+        );
+    }, [selected, products]);
+
     return (
         <Layout>
             <Filter />
             <section className="products-container">
-                {products?.map((item) => (
+                {filteredProducts?.map((item) => (
                     <ShelfProduct props={item} />
                 ))}
             </section>

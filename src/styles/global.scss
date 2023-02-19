@@ -13,10 +13,15 @@
 button{
     user-select: none;
 }
+#root{
+    @include centralize;
+    background: $primary-color;
+}
 
 .layout{
     &-container{
         width: 100%;
+        max-width: 600px;
         height: 100vh;
         background-color: $primary-color;
     }
@@ -132,14 +137,20 @@ color: #000000;
             flex-wrap: wrap;
             row-gap: 30px;
             margin-bottom: 15px;
+    max-width: 413px;
+
             @include centralize();
             justify-content: space-between;
+            @media only screen and (min-width: 600px) {
+                gap: 20px;
+                }
         }
     }
     &-button{
         cursor: pointer;
         margin-top: 30px;
         width: 100%;
+        max-width: 413px;
         height: 50px;
         max-height: 50px;
         border-radius: 10px;
@@ -191,7 +202,7 @@ color: $dark-gray-color;
 .filter-container {
     background-color: $white-color;
     z-index: 10;
-    width: 100vw;
+    width: 100%;
     position: sticky;
     border-radius: 30px 30px 0 0;
     padding: 20px;
@@ -238,6 +249,19 @@ svg{
         justify-content: flex-start;
         scroll-snap-type: y mandatory;
         flex-direction: column;
+        &::-webkit-scrollbar {
+            width: 5px;
+          }
+  
+          &::-webkit-scrollbar-track {
+            background: $light-gray-color;
+            border-radius: 44px;
+          }
+  
+          &::-webkit-scrollbar-thumb {
+            background: $dark-gray-color;
+            border-radius: 42px;
+          }
         span {
             cursor: pointer;
             color: $dark-gray-color;
@@ -292,6 +316,19 @@ svg{
     padding-inline: 20px;
     @include centralize($justify: space-between, $align: flex-start);
     position: relative;
+    &::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: $light-gray-color;
+        border-radius: 44px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: $dark-gray-color;
+        border-radius: 42px;
+      }
     .shadow{
         background: linear-gradient(
             180deg,
@@ -437,6 +474,7 @@ color: #C75E6D;
             }
         }
         .giftBox{
+            cursor: pointer;
             position: absolute;
             top: -5px;
             right: -5px;
@@ -478,11 +516,13 @@ color: #C75E6D;
 .info-button{
     @include centralize($justify: space-between);
     width: 100%;
+    max-width: 600px;
     padding: 15px 20px;
     position: fixed;
-    bottom: 0;
-    left: 0;
     background: $white-color;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
     p{
         line-height: 18px;
         font-size: 14px;
@@ -490,11 +530,13 @@ color: #C75E6D;
     }
     :not(button){
         svg{
+            animation: shake-lr 2s ease-in-out infinite;
             height: 18px;
             width: 18px;
             padding: 2px;
             border-radius: 3px;
             background-color: $primary-color;
+
             transform: translateY(5px);
         }
     }

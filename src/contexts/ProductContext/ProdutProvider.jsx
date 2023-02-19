@@ -7,6 +7,7 @@ function ProductProvider({ children }) {
     const [productPrice, setProductPrice] = useState(0);
     const [productUrl, setProductUrl] = useState("");
     const [productUrlImage, setProductUrlImage] = useState("");
+    const [productStatus, setProductStatus] = useState("available");
 
     const clearInputs = () => {
         setProductName("");
@@ -29,7 +30,9 @@ function ProductProvider({ children }) {
                 setProductUrl,
                 productUrlImage,
                 setProductUrlImage,
-                clearInputs
+                productStatus,
+                setProductStatus,
+                clearInputs,
             }}
         >
             {children}

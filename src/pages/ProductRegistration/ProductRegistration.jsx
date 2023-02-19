@@ -13,6 +13,7 @@ const ProductRegistration = () => {
     const { changeModal } = useModal();
     const usersCollectionRef = collection(db, "products");
     const [isLoading, setIsLoading] = useState(false);
+    let userId = "";
     const {
         productName,
         setProductName,
@@ -23,6 +24,7 @@ const ProductRegistration = () => {
         productUrl,
         setProductUrl,
         productUrlImage,
+        productStatus,
         setProductUrlImage,
         clearInputs,
     } = useProduct();
@@ -43,6 +45,8 @@ const ProductRegistration = () => {
                 productPrice,
                 productUrl,
                 productUrlImage,
+                productStatus,
+                userId,
             });
             setIsLoading(false);
             changeModal("registered");

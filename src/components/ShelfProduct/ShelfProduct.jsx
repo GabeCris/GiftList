@@ -9,17 +9,14 @@ import { GiftIcon, GiftOpenIcon } from "../Icons";
 const ShelfProduct = ({ props }) => {
     const { changeModal } = useModal();
     const { changeReserve } = useReserve();
-    const [isMyReserve, setIsMyReserve] = useState(false);
 
-    useEffect(() => {
-        if (props.userId == "500") {
-            setIsMyReserve(true);
-        }
-    });
+    const checkUserId = (userId) => {
+        return props.userId === userId;
+    };
 
     console.log(props.id);
     const changeButton = () => {
-        switch (props.status) {
+        switch (props.productStatus || props.status) {
             case "available":
                 return (
                     <Button
@@ -34,7 +31,7 @@ const ShelfProduct = ({ props }) => {
     };
 
     const changeGiftIcon = () => {
-        switch (props.status) {
+        switch (props.productStatus || props.status) {
             case "available":
                 return (
                     <div
@@ -61,12 +58,15 @@ const ShelfProduct = ({ props }) => {
     const cancelReserve = () => {
         changeModal("cancelReserve");
         changeReserve("", props.id, "available");
+        console.log("CANCELOU")
     };
 
     return (
         <div
-            className={`shelfProduct ${"shelfProduct-" + props.status} ${
-                isMyReserve && "shelfProduct-reserved"
+            className={`shelfProduct ${
+                !checkUserId("500")
+                    ? "shelfProduct-" + props.productStatus
+                    : "shelfProduct-reserved"
             }`}
         >
             {changeGiftIcon()}
@@ -80,7 +80,7 @@ const ShelfProduct = ({ props }) => {
             <p className="shelfProduct-price">
                 {formatPrice(props.productPrice)}
             </p>
-            {isMyReserve ? (
+            {checkUserId("500") ? (
                 <Button label="cancelar" onClick={() => cancelReserve()} />
             ) : (
                 changeButton()
