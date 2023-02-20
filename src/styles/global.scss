@@ -24,9 +24,37 @@ button{
         max-width: 600px;
         height: 100vh;
         background-color: $primary-color;
+        &-initialPage{
+            .layout-header{
+                
+                @include centralize;
+                padding-block: 20px;
+                img{
+                    height: 200px;
+                }
+            }
+            .layout-content{
+                height: calc(100vh - 240px);
+            }
+            .inputContainer{
+                margin-bottom: 0;
+            }
+        }
+       
     }
     &-header{
         padding-inline: 20px;
+        &-content{
+            @include centralize($justify: space-between);
+            .flower-title{
+                position: absolute;
+                top: -5px;
+                left: 0;
+            }
+            .logo{
+                height: 25px;
+            }
+        }
     }
     &-title{
         padding-block: 20px;
@@ -47,9 +75,12 @@ button{
         @include centralize($direction: column, $justify: flex-start);
         &-title{
             @include title($color: $black-color);
+            text-align: center;
             margin-bottom: 30px;
         }
-
+        .react-code-input{
+            margin-top: 6px;
+        }
     }
     &-modal{
         background: #00000060;
@@ -658,6 +689,60 @@ color: #C75E6D;
 
 form{
     margin-bottom: 30px;
+}
+
+.skeleton{
+    &-card{
+        padding: 12px;
+        @include centralize($direction: column, $justify: flex-start, $align: flex-start);
+        gap: 10px;
+        width: 145px;
+        height: 279px;
+        background-color: $light-gray-color;
+        border-radius: 10px;
+        background: linear-gradient(
+            120deg,
+            $light-gray-color 30%,
+            $white-color 38%,
+            $white-color 40%,
+            $light-gray-color 48%
+        );
+        background-size: 200% 100%;
+        background-position: 100% 0;
+        animation: load 1s infinite;
+    }
+    &-image{
+        width: 100%;
+        height: 133px;
+        background-color: $white-color;
+        border-radius: 10px;
+        opacity: 50%;
+    }
+    &-name,
+        &-price,
+        &-button{
+        width: 80%;
+        border-radius: 5px;
+        height: 15px;
+        background-color: $white-color;
+        opacity: 50%;
+    }
+    &-price{
+        width: 60%;
+        height: 20px;
+    }
+    &-button{
+        margin-top: 10px;
+        width: 100%;
+        height: 45px;
+    }
+    
+}
+
+@keyframes load {
+    100% {
+        background-position: -100% 0;
+    }
 }
 
 @keyframes vtex-spinner-rotate {

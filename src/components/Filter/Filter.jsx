@@ -12,7 +12,7 @@ const Filter = () => {
             <div className="filter-content">
                 <div
                     className="filter-button"
-                    // onMouseLeave={() => setOpenOptions(false)}
+                    onMouseLeave={() => setOpenOptions(false)}
                     onClick={() => setOpenOptions(!openOptions)}
                 >
                     <FilterIcon />

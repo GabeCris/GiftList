@@ -7,7 +7,7 @@ import { useFilter } from "../../contexts/FilterContext/FilterContext";
 const InitialPage = () => {
     const { selected, setSelected } = useFilter();
     return (
-        <Layout>
+        <Layout title="Categorias">
             <h2 className="layout-content-title">Filtre por categoria</h2>
             <section className="layout-filter-container">
                 {iconsFilterList.map(({ label, icon }) => (

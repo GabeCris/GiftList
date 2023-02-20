@@ -7,12 +7,14 @@ import { GiftOpenIcon } from "../../components/Icons";
 import { db } from "../../config/firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useFilter } from "../../contexts/FilterContext";
+import Skeleton from "../../components/Skeleton";
 
 const Products = () => {
     const usersCollectionsRef = collection(db, "products");
     const { selected } = useFilter();
     const [products, setProducts] = useState();
     const [filteredProducts, setFilteredProducts] = useState();
+    const [view, setView] = useState(true);
 
     useEffect(() => {
         const getProducts = async () => {
@@ -20,12 +22,13 @@ const Products = () => {
             setProducts(
                 data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
             );
+            setView(false);
         };
         getProducts();
     }, []);
 
     useEffect(() => {
-        console.log(selected.label)
+        console.log(selected.label);
         setFilteredProducts(
             selected.label !== "Todas"
                 ? products?.filter(
@@ -39,6 +42,7 @@ const Products = () => {
         <Layout>
             <Filter />
             <section className="products-container">
+                {view && Array.from(Array(6)).map(() => <Skeleton />)}
                 {filteredProducts?.map((item) => (
                     <ShelfProduct props={item} />
                 ))}
