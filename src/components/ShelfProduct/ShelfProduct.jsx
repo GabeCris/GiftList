@@ -74,6 +74,7 @@ const ShelfProduct = ({ props }) => {
                 <img
                     src={props.productUrlImage}
                     className="shelfProduct-image"
+                    alt={props.productName}
                 />
             </div>
             <h2 className="shelfProduct-name">{props.productName}</h2>

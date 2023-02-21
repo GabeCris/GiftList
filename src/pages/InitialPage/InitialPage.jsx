@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactCodeInput from "react-code-input";
 import Button from "../../components/Button";
 import Input from "../../components/Input";

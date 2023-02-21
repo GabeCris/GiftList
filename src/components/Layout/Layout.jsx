@@ -22,7 +22,7 @@ const Layout = ({ children, title = "Lista Presentes" }) => {
         >
             <header className="layout-header">
                 {isInitialPage ? (
-                    <img src="../assets/logo-1.svg" alt="" />
+                    <img src="../assets/logo-1.svg" alt="" className="logo-initial"/>
                 ) : (
                     <section className="layout-header-content">
                         <h1 className="layout-title">{title}</h1>
@@ -36,6 +36,18 @@ const Layout = ({ children, title = "Lista Presentes" }) => {
                         />
                     </section>
                 )}
+                <img
+                    src="../assets/flower-title.svg"
+                    className="flower-background"
+                />
+                <img
+                    src="../assets/flower-title.svg"
+                    className="flower-background-2"
+                />
+                <img
+                    src="../assets/logo-footer-desk.svg"
+                    className="footer-desktop"
+                />
             </header>
             <main className="layout-content">{children}</main>
         </section>

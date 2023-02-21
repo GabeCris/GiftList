@@ -29,9 +29,7 @@ button{
                 
                 @include centralize;
                 padding-block: 20px;
-                img{
-                    height: 200px;
-                }
+            
             }
             .layout-content{
                 height: calc(100vh - 240px);
@@ -44,16 +42,49 @@ button{
     }
     &-header{
         padding-inline: 20px;
-        &-content{
-            @include centralize($justify: space-between);
-            .flower-title{
+        .logo{
+
+            height: 25px;
+            &-initial{
+                height: 200px;
+            }
+        }
+        .flower{
+            &-title{
                 position: absolute;
                 top: -5px;
                 left: 0;
+                @media only screen and (min-width: 600px) {
+                 display: none;
+                }
             }
-            .logo{
-                height: 25px;
+            &-background, &-background-2{
+                display: none;
+                position: absolute;
+                top: 10%;
+                left: 0;
+                @media only screen and (min-width: 600px) {
+                    width: 30%;
+                    display: block;
+                }
+                &-2{
+                    top: 40%;
+                    right: 0;
+                    left: auto;
+                    width: 27%;
+                    transform: rotateY(180deg) rotateX(180deg);
             }
+            }
+        }
+        .footer-desktop{
+            position: fixed;
+            left: 50px;
+            bottom: 50px;
+            width: 200px;
+            opacity: 70%;
+        }
+        &-content{
+            @include centralize($justify: space-between);
         }
     }
     &-title{
@@ -172,7 +203,7 @@ color: #000000;
 
             @include centralize();
             justify-content: space-between;
-            @media only screen and (min-width: 600px) {
+            @media only screen and (min-width: 430px) {
                 gap: 20px;
                 }
         }
@@ -222,7 +253,6 @@ color: $dark-gray-color;
             font-weight: 700;
             line-height: 16px;
             border-radius: 0;
-            border-bottom: 2px solid $primary-color;
             a{
                 color: $primary-color;
             }
@@ -347,6 +377,9 @@ svg{
     padding-inline: 20px;
     @include centralize($justify: space-between, $align: flex-start);
     position: relative;
+            @media only screen and (min-width: 430px) {
+                justify-content: center;
+            }
     &::-webkit-scrollbar {
         width: 5px;
       }
@@ -398,6 +431,9 @@ svg{
               border-radius: 10px;
             }
             &-image{
+                font-size: 14px;
+                color: $primary-color;
+                font-weight: 600;
             width: 100%;
             object-fit: contain;
         }
@@ -567,8 +603,7 @@ color: #C75E6D;
             padding: 2px;
             border-radius: 3px;
             background-color: $primary-color;
-
-            transform: translateY(5px);
+            margin-bottom: -5px;
         }
     }
     button{
@@ -638,6 +673,7 @@ color: #C75E6D;
         gap: 10px;
         width: 100%;
         margin-bottom: 25px;
+        max-width: 413px;
 
     }
     &Label{font-weight: 400;
