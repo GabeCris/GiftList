@@ -53,11 +53,6 @@ const InitialPage = () => {
                         type={"text"}
                     ></Input>
                     <Button label={"Próximo"} onClick={() => setStep(2)} />
-                    <Button
-                        label={"Cadastrar Produtos"}
-                        url="/productRegistration"
-                        secondary={true}
-                    />
                 </>
             ) : (
                 <>

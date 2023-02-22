@@ -117,7 +117,7 @@ const ProductRegistration = () => {
                     isLoading={isLoading}
                 ></Button>
             </form>
-            <Button label={"Voltar"} secondary={true} url={"/"}></Button>
+            <Button label={"Voltar"} secondary={true} url={"/edit"}></Button>
         </Layout>
     );
 };

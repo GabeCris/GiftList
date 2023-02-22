@@ -3,7 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import Filter from "../../components/Filter";
 import Button from "../../components/Button";
 import ShelfProduct from "../../components/ShelfProduct";
-import { GiftOpenIcon } from "../../components/Icons";
+import { GiftOpenIcon, LogoutIcon } from "../../components/Icons";
 import { db } from "../../config/firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useFilter } from "../../contexts/FilterContext";
@@ -52,7 +52,9 @@ const Products = () => {
                     Clique no <GiftOpenIcon /> <b>presente aberto</b> para
                     reservar um produto!
                 </p>
-                <Button url={"/filter"} logout></Button>
+                <Button url={"/filter"} icon>
+                    <LogoutIcon/>
+                </Button>
             </section>
         </Layout>
     );

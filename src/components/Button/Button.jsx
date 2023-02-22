@@ -6,10 +6,11 @@ import Spinner from "../Spinner";
 const Button = ({
     label,
     url = "#",
-    logout,
+    icon,
     isLoading,
     secondary,
     external,
+    children,
     ...props
 }) => {
     const navigate = useNavigate();
@@ -24,7 +25,8 @@ const Button = ({
             {...props}
         >
             {isLoading ? <Spinner /> : label}
-            {logout && <LogoutIcon />}
+            {icon && children}
+            {/* {logout && <LogoutIcon />} */}
         </button>
     );
 };
