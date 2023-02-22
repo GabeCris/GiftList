@@ -28,7 +28,6 @@ const Products = () => {
     }, []);
 
     useEffect(() => {
-        console.log(selected.label);
         setFilteredProducts(
             selected.label !== "Todas"
                 ? products?.filter(

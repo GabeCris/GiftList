@@ -414,6 +414,7 @@ svg{
     margin-bottom: 75px;
     flex-wrap: wrap;
     overflow-y: auto;
+    overflow-x: hidden;
     padding-inline: 20px;
     @include centralize($justify: space-between, $align: flex-start);
     position: relative;
@@ -600,6 +601,10 @@ color: #C75E6D;
             }
         }
     }
+}
+
+.edit-container{
+    gap: 15px;
 }
 
 @keyframes shake-lr {
@@ -876,7 +881,6 @@ form{
             background: rgba(0, 0, 0, 0.4);
             svg{
                 filter: brightness(100);
-                z-index: 5;
             }
         }
         img{

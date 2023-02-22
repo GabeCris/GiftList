@@ -27,7 +27,6 @@ const Edit = () => {
     }, []);
 
     useEffect(() => {
-        console.log(selected.label);
         setFilteredProducts(
             selected.label !== "Todas"
                 ? products?.filter(
@@ -53,7 +52,7 @@ const Edit = () => {
                     <AddIcon />
                 </Button>
                 <p>
-                   <b>Reservados:</b> 
+                   <b>Reservados: X</b> 
                 </p>
                 <Button url={"/filter"} icon>
                     <LogoutIcon />

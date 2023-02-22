@@ -14,7 +14,6 @@ const ShelfProduct = ({ props }) => {
         return props.userId === userId;
     };
 
-    console.log(props.id);
     const changeButton = () => {
         switch (props.productStatus || props.status) {
             case "available":
@@ -58,7 +57,6 @@ const ShelfProduct = ({ props }) => {
     const cancelReserve = () => {
         changeModal("cancelReserve");
         changeReserve("", props.id, "available");
-        console.log("CANCELOU")
     };
 
     return (

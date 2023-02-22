@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { EditIcon, GiftIcon, GiftOpenIcon } from "../Icons";
 
 const ShelfEdit = ({ props }) => {
+    const navigate = useNavigate();
     const changeGiftIcon = () => {
         switch (props.productStatus || props.status) {
             case "available":
@@ -18,9 +20,8 @@ const ShelfEdit = ({ props }) => {
                 );
         }
     };
-    console.log(props);
     return (
-        <section className="shelfEdit">
+        <section className="shelfEdit" onClick={() => navigate(`/edit/${props.id}`)}>
             {changeGiftIcon()}
             <div className="shelfEditImage">
                 <div className="icon-edit">
