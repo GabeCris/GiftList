@@ -38,12 +38,20 @@ const props = {
 
 const InitialPage = () => {
     const [step, setStep] = useState(1);
+    const br = "%0a";
+    const spc = "%20";
 
     return (
         <Layout>
             <h2 className="layout-content-title">
                 Bem vindos a nossa lista de presentes!
             </h2>
+            <a
+                target={"_blank"}
+                href={`https://wa.me/?text=D%C3%AA%20uma%20olhadinha%20na%20nossa%20lista%20de%20presentes!%0A%0ASeu%20nome%20de%20usu%C3%A1rio%3A%20*Bruna*%0ASeu%20c%C3%B3digo%20de%20acesso%3A%20*0212*%0A%0Ahttps%3A%2F%2Flista-bruna-gabriel.netlify.app%2F%0A%0A`}
+            >
+                ENVIAR ZAP
+            </a>
             {step == 1 ? (
                 <>
                     <Input
