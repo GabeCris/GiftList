@@ -5,17 +5,23 @@ import Input from "../../components/Input";
 import Layout from "../../components/Layout/Layout";
 import { useProduct } from "../../contexts/ProductContext";
 import { db } from "../../config/firebase";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import {
+    doc,
+    collection,
+    getDocs,
+    updateDoc,
+    deleteDoc,
+} from "firebase/firestore";
 import { useModal } from "../../contexts/ModalContext";
 import { useParams } from "react-router-dom";
+import { DeleteIcon } from "../../components/Icons";
 
 const EditProduct = () => {
     const { changeModal } = useModal();
     const { id } = useParams();
     const [product, setProduct] = useState([]);
-    const usersCollectionRef = collection(db, "products");
     const [isLoading, setIsLoading] = useState(false);
-    let userId = "";
+    const usersCollectionRef = collection(db, "products");
     const {
         productName,
         setProductName,
@@ -41,17 +47,17 @@ const EditProduct = () => {
         async (e) => {
             setIsLoading(true);
             e.preventDefault();
-            await addDoc(usersCollectionRef, {
+            const docRef = doc(db, "products", id);
+            await updateDoc(docRef, {
                 productName,
                 productCategory,
                 productPrice,
                 productUrl,
                 productUrlImage,
                 productStatus,
-                userId,
             });
             setIsLoading(false);
-            changeModal("registered");
+            changeModal("edited");
             clearInputs();
         },
         [
@@ -62,6 +68,13 @@ const EditProduct = () => {
             productUrlImage,
         ]
     );
+
+    const deleteProduct = async () => {
+        const docRef = doc(db, "products", id);
+        await deleteDoc(docRef);
+        changeModal("deleteReserve");
+        clearInputs();
+    };
 
     useEffect(() => {
         const getProducts = async () => {
@@ -76,6 +89,15 @@ const EditProduct = () => {
         getProducts();
     }, []);
 
+    useEffect(() => {
+        setProductName(product?.productName);
+        setProductCategory(product?.productCategory);
+        setProductPrice(product?.productPrice);
+        setProductUrl(product?.productUrl);
+        setProductUrlImage(product?.productUrlImage);
+        console.log(product);
+    }, [product]);
+
     return (
         <Layout title="Editar">
             <form onSubmit={handleSubmit}>
@@ -83,13 +105,13 @@ const EditProduct = () => {
                     name="Nome do produto"
                     placeholder="Informe o nome"
                     required
-                    value={product?.productName}
+                    value={productName}
                     onChange={(e) => setProductName(e.target.value)}
                     type={"text"}
                     minLength={6}
                 ></Input>
                 <CategoryRow
-                    selected={product?.productCategory}
+                    selected={productCategory}
                     setSelected={setProductCategory}
                 ></CategoryRow>
                 <div className="input-price">
@@ -98,11 +120,11 @@ const EditProduct = () => {
                         name="Preço do produto (R$)"
                         placeholder="Informe o preço"
                         required
-                        value={product?.productPrice}
+                        value={productPrice}
                         onChange={handleChange}
                     />
                     <img
-                        src={product?.productUrlImage || defaultImage}
+                        src={productUrlImage || defaultImage}
                         onError={(e) => (e.target.src = defaultImage)}
                     />
                 </div>
@@ -113,7 +135,7 @@ const EditProduct = () => {
                         required
                         type={"text"}
                         autoComplete="false"
-                        value={product?.productUrl}
+                        value={productUrl}
                         onChange={(e) => setProductUrl(e.target.value)}
                     ></Input>
                     <Input
@@ -122,7 +144,7 @@ const EditProduct = () => {
                         required
                         type={"text"}
                         autoComplete="false"
-                        value={product?.productUrlImage}
+                        value={productUrlImage}
                         onChange={(e) => setProductUrlImage(e.target.value)}
                     ></Input>
                 </div>
@@ -130,10 +152,13 @@ const EditProduct = () => {
                     label={"EDITAR"}
                     type="submit"
                     isLoading={isLoading}
-                    disabled
+                    // disabled
                 ></Button>
             </form>
             <Button label={"Voltar"} secondary={true} url={"/edit"}></Button>
+            <Button icon tertiary={true} onClick={() => deleteProduct()}>
+                <DeleteIcon />
+            </Button>
         </Layout>
     );
 };

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useModal } from "../../contexts/ModalContext";
 import useReserve from "../../hooks/useReserve/useReserve";
 import { ModalList } from "./ModalList";
@@ -6,6 +7,7 @@ import { ModalList } from "./ModalList";
 const Modal = ({ buildModal }) => {
     const { showModal, changeModal } = useModal();
     const [modalContent, setModalContent] = useState();
+    const navigate = useNavigate();
 
     useEffect(() => {
         setModalContent(ModalList?.find((item) => item?.status === buildModal));
@@ -22,17 +24,36 @@ const Modal = ({ buildModal }) => {
                         Entendi
                     </button>
                 );
-            case "registered":
-                return (
-                    <button className="layout-button" onClick={changeModal}>
-                        Entendi
-                    </button>
-                );
+
             case "cancelReserve":
                 return (
                     <button
                         className="layout-button"
                         onClick={() => window.location.reload()}
+                    >
+                        Entendi
+                    </button>
+                );
+            case "deleteReserve":
+                return (
+                    <button
+                        className="layout-button"
+                        onClick={() => {
+                            navigate("/edit");
+                            changeModal();
+                        }}
+                    >
+                        Entendi
+                    </button>
+                );
+            default:
+                return (
+                    <button
+                        className="layout-button"
+                        onClick={() => {
+                            navigate("/edit");
+                            changeModal();
+                        }}
                     >
                         Entendi
                     </button>

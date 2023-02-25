@@ -14,4 +14,14 @@ export const ModalList = [
         title: "Produto cadastrado",
         text: "O cadastro do produto foi realizado com sucesso!",
     },
+    {
+        status: "edited",
+        title: "Produto editado",
+        text: "A edição do produto foi realizado com sucesso!",
+    },
+    {
+        status: "deleteReserve",
+        title: "Produto deletado",
+        text: "O produto foi deletado do banco de dados!",
+    },
 ];

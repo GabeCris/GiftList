@@ -7,6 +7,7 @@ import { db } from "../../config/firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import Filter from "../../components/Filter";
 import ShelfEdit from "../../components/ShelfEdit";
+import SkeletonEdit from "../../components/SkeletonEdit";
 
 const Edit = () => {
     const usersCollectionsRef = collection(db, "products");
@@ -40,20 +41,30 @@ const Edit = () => {
         <Layout title="Editar">
             <Filter />
             <section className="products-container edit-container">
-                {/* {view && Array.from(Array(6)).map(() => <Skeleton />)} */}
-                {filteredProducts?.map(
-                    (item) =>
-                        // <ShelfProduct props={item} />
-                        <ShelfEdit props={item}/>
-                )}
+                {view && Array.from(Array(8)).map(() => <SkeletonEdit />)}
+                {filteredProducts?.map((item) => (
+                    // <ShelfProduct props={item} />
+                    <ShelfEdit props={item} />
+                ))}
             </section>
             <section className="info-button">
                 <Button url={"/productRegistration"} icon>
                     <AddIcon />
                 </Button>
-                <p>
-                   <b>Reservados: X</b> 
-                </p>
+                <div className="info-product">
+                    <p>
+                        <b>Total: </b>
+                        {products ? products?.length : "0"}
+                    </p>
+                    <p>
+                        <b>Reservados: </b>
+                        {products
+                            ? products?.filter(
+                                  (item) => item.productStatus === "unavailable"
+                              )?.length
+                            : "0"}
+                    </p>
+                </div>
                 <Button url={"/filter"} icon>
                     <LogoutIcon />
                 </Button>

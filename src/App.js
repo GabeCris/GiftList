@@ -7,22 +7,25 @@ import InitialPage from "./pages/InitialPage";
 import ProductRegistration from "./pages/ProductRegistration/ProductRegistration";
 import Products from "./pages/Products/Products";
 import "./styles/global.scss";
+import { ModalProvider } from "./contexts/ModalContext";
 
 const App = () => {
     return (
         <>
             <BrowserRouter>
-                <Routes>
-                    <Route path="/" element={<InitialPage />} />
-                    <Route path="/filter" element={<Filter />} />
-                    <Route path="/products" element={<Products />} />
-                    <Route
-                        path="/productRegistration"
-                        element={<ProductRegistration />}
-                    />
-                    <Route path="/edit" element={<Edit />} />
-                    <Route path="/edit/:id" element={<EditProduct />} />
-                </Routes>
+                <ModalProvider>
+                    <Routes>
+                        <Route path="/" element={<InitialPage />} />
+                        <Route path="/filter" element={<Filter />} />
+                        <Route path="/products" element={<Products />} />
+                        <Route
+                            path="/productRegistration"
+                            element={<ProductRegistration />}
+                        />
+                        <Route path="/edit" element={<Edit />} />
+                        <Route path="/edit/:id" element={<EditProduct />} />
+                    </Routes>
+                </ModalProvider>
             </BrowserRouter>
         </>
     );

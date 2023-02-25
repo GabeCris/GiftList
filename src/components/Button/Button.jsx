@@ -9,6 +9,7 @@ const Button = ({
     icon,
     isLoading,
     secondary,
+    tertiary,
     external,
     children,
     ...props
@@ -16,9 +17,11 @@ const Button = ({
     const navigate = useNavigate();
     return (
         <button
-            className={`layout-button ${
-                secondary && "layout-button-secondary"
-            }`}
+            className={`layout-button 
+            ${secondary && "layout-button-secondary"}
+            ${tertiary && "layout-button-tertiary"}
+            
+            `}
             onClick={() =>
                 !external ? navigate(url) : window.open(url, "_blank")
             }
