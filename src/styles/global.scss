@@ -38,7 +38,9 @@ button{
                 margin-bottom: 0;
             }
         }
-       
+        .inputCode{
+            @include centralize($direction: column);
+        }
     }
     &-header{
         padding-inline: 20px;
@@ -126,7 +128,7 @@ button{
         }
         &:has(.layout-filter-container){
             .layout-button{
-                &:last-child{
+                &:nth-last-child(-n+2){
                     position: fixed;
                     right: 20px;
                     bottom: 15px;
@@ -139,6 +141,10 @@ button{
             svg{
                 height: 25px;
             }
+                }
+                &:nth-last-child(2){
+                    right: auto;
+                    left: 20px;
                 }
             }
         }
@@ -867,7 +873,7 @@ form{
   animation: vtex-spinner-rotate 0.5s infinite linear;
 }
 
-.shelfEdit{
+.shelfEdit, .shelfUser{
     @include centralize($justify: flex-start);
     gap: 16px;
     width: 100%;
@@ -876,7 +882,10 @@ form{
     background-color: $light-gray-color;
     padding: 6px;
     position: relative;
-    .giftBox{
+    &.shelfUser{
+        padding-right: 16px;
+    }
+    .giftBox, .giftBoxUser{
         cursor: pointer;
         position: absolute;
         top: -5px;
@@ -888,6 +897,14 @@ form{
         @include centralize;
         &-unavailable{
             background-color: $dark-gray-color;
+        }
+        &.giftBoxUser{
+            height: 100%;
+            width: 47px;
+            min-width: 47px;
+            top: 0;
+            right: 0;
+            position: relative;
         }
     }
     &Image{

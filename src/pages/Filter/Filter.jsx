@@ -3,7 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import Button from "../../components/Button";
 import { iconsFilterList } from "./List";
 import { useFilter } from "../../contexts/FilterContext/FilterContext";
-import { EditIcon } from "../../components/Icons";
+import { EditIcon, UserIcon } from "../../components/Icons";
 
 const InitialPage = () => {
     const { selected, setSelected } = useFilter();
@@ -35,6 +35,9 @@ const InitialPage = () => {
             </section>
             <Button label={"Filtrar"} url={"/products"} />
             <Button label={"Sair"} url={"/"} secondary={true} />
+            <Button url={"/user"} icon>
+                <UserIcon />
+            </Button>
             <Button url={"/edit"} icon>
                 <EditIcon />
             </Button>

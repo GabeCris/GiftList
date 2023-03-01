@@ -20,6 +20,8 @@ export { default as GiftOpenIcon } from "./GiftOpenIcon";
 export { default as EditIcon } from "./EditIcon";
 export { default as AddIcon } from "./AddIcon";
 export { default as DeleteIcon } from "./DeleteIcon";
+export { default as UserIcon } from "./UserIcon";
+export { default as ShareIcon } from "./ShareIcon";
 
 export const iconsFilterList = [
     Bathtub,
