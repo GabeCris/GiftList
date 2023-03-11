@@ -1,13 +1,14 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useEffect } from "react";
 import Button from "../../components/Button";
 import CategoryRow from "../../components/CategoryRow";
 import Input from "../../components/Input";
 import Layout from "../../components/Layout/Layout";
 import { useProduct } from "../../contexts/ProductContext";
 import { db } from "../../config/firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, getDocs } from "firebase/firestore";
 import formatPrice from "../../utils/formatPrice";
 import { useModal } from "../../contexts/ModalContext";
+import { useParams } from "react-router-dom";
 import ReactCodeInput, { reactCodeInput } from "react-code-input";
 
 const props = {
@@ -41,17 +42,19 @@ const props = {
     },
 };
 
-const UserRegistration = () => {
+const UserEdit = () => {
     const { changeModal } = useModal();
-    const usersCollectionRef = collection(db, "products");
+    const usersCollectionRef = collection(db, "user");
     const [isLoading, setIsLoading] = useState(false);
     const [userName, setUserName] = useState();
     const [pinCode, setPinCode] = useState("0212");
+    const [user, setUser] = useState([]);
+    const { id } = useParams();
 
     const handleSubmit = useCallback(async (e) => {
         setIsLoading(true);
         e.preventDefault();
-        await addDoc(usersCollectionRef, { userName, pinCode });
+        await addDoc(usersCollectionRef, {});
         setIsLoading(false);
         changeModal("registered");
     }, []);
@@ -59,6 +62,24 @@ const UserRegistration = () => {
     const handlePinChange = (pinCode) => {
         setPinCode(pinCode);
     };
+
+    useEffect(() => {
+        const getProducts = async () => {
+            const data = await getDocs(usersCollectionRef);
+            setUser(
+                data.docs
+                    ?.map((doc) => ({ ...doc.data(), id: doc.id }))
+                    ?.find((data) => data.id == id)
+            );
+            // setSkeleton(false);
+        };
+        getProducts();
+    }, []);
+
+    useEffect(() => {
+        setUserName(user?.userName)
+        console.log(user);
+    }, [user]);
 
     return (
         <Layout title="Cadastro">
@@ -97,4 +118,4 @@ const UserRegistration = () => {
     );
 };
 
-export default UserRegistration;
+export default UserEdit;

@@ -46,6 +46,18 @@ const Modal = ({ buildModal }) => {
                         Entendi
                     </button>
                 );
+            case "userRegistration":
+                return (
+                    <button
+                        className="layout-button"
+                        onClick={() => {
+                            navigate("/user");
+                            changeModal();
+                        }}
+                    >
+                        Entendi
+                    </button>
+                );
             default:
                 return (
                     <button

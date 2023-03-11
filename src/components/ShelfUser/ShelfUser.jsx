@@ -15,7 +15,7 @@ const ShelfEdit = ({ id, products, userName }) => {
     }, []);
 
     return (
-        <section className="shelfUser" onClick={() => navigate(`/edit/${id}`)}>
+        <section className="shelfUser" onClick={() => navigate(`/user/${id}`)}>
             {productName == "" ? (
                 <div className="giftBoxUser">
                     <GiftOpenIcon />

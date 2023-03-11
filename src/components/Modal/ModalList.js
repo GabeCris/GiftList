@@ -24,4 +24,9 @@ export const ModalList = [
         title: "Produto deletado",
         text: "O produto foi deletado do banco de dados!",
     },
+    {
+        status: "userRegistration",
+        title: "USER",
+        text: "O produto foi deletado do banco de dados!",
+    }
 ];

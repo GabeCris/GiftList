@@ -10,6 +10,7 @@ import "./styles/global.scss";
 import { ModalProvider } from "./contexts/ModalContext";
 import User from "./pages/User";
 import UserRegistration from "./pages/UserRegistration/UserRegistration";
+import UserEdit from "./pages/UserEdit";
 
 const App = () => {
     return (
@@ -29,6 +30,7 @@ const App = () => {
                             path="/userRegistration"
                             element={<UserRegistration />}
                         />
+                        <Route path="/user/:id" element={<UserEdit />} />
                         <Route path="/edit" element={<Edit />} />
                         <Route path="/edit/:id" element={<EditProduct />} />
                     </Routes>
