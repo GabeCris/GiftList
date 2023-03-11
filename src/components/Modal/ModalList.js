@@ -25,8 +25,18 @@ export const ModalList = [
         text: "O produto foi deletado do banco de dados!",
     },
     {
+        status: "deleteUser",
+        title: "Usuário deletado",
+        text: "O usuário foi deletado do banco de dados!",
+    },
+    {
         status: "userRegistration",
-        title: "USER",
-        text: "O produto foi deletado do banco de dados!",
+        title: "Usuário cadastrado",
+        text: "O nome e o código de acesso foram salvos no banco de dados!",
+    },
+    {
+        status: "userEdit",
+        title: "Usuário editado",
+        text: "A edição do usuario foi realizado com sucesso!",
     }
 ];

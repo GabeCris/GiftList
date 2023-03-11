@@ -43,7 +43,7 @@ const props = {
 
 const UserRegistration = () => {
     const { changeModal } = useModal();
-    const usersCollectionRef = collection(db, "products");
+    const usersCollectionRef = collection(db, "user");
     const [isLoading, setIsLoading] = useState(false);
     const [userName, setUserName] = useState();
     const [pinCode, setPinCode] = useState("0212");
@@ -53,8 +53,8 @@ const UserRegistration = () => {
         e.preventDefault();
         await addDoc(usersCollectionRef, { userName, pinCode });
         setIsLoading(false);
-        changeModal("registered");
-    }, []);
+        changeModal("userRegistration");
+    }, [userName, pinCode]);
 
     const handlePinChange = (pinCode) => {
         setPinCode(pinCode);

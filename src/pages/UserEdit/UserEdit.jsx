@@ -5,11 +5,12 @@ import Input from "../../components/Input";
 import Layout from "../../components/Layout/Layout";
 import { useProduct } from "../../contexts/ProductContext";
 import { db } from "../../config/firebase";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { updateDoc, doc, collection, getDocs, deleteDoc } from "firebase/firestore";
 import formatPrice from "../../utils/formatPrice";
 import { useModal } from "../../contexts/ModalContext";
 import { useParams } from "react-router-dom";
 import ReactCodeInput, { reactCodeInput } from "react-code-input";
+import { DeleteIcon } from "../../components/Icons";
 
 const props = {
     className: reactCodeInput,
@@ -42,27 +43,26 @@ const props = {
     },
 };
 
+
 const UserEdit = () => {
     const { changeModal } = useModal();
     const usersCollectionRef = collection(db, "user");
     const [isLoading, setIsLoading] = useState(false);
     const [userName, setUserName] = useState();
-    const [pinCode, setPinCode] = useState("0212");
+    const [currentPinCode, setCurrentPinCode] = useState();
+    const [pinCode, setPinCode] = useState("0000");
     const [user, setUser] = useState([]);
     const { id } = useParams();
-
-    const handleSubmit = useCallback(async (e) => {
-        setIsLoading(true);
-        e.preventDefault();
-        await addDoc(usersCollectionRef, {});
-        setIsLoading(false);
-        changeModal("registered");
-    }, []);
 
     const handlePinChange = (pinCode) => {
         setPinCode(pinCode);
     };
 
+    const deleteUser = async () => {
+        const docRef = doc(db, "user", id);
+        await deleteDoc(docRef);
+        changeModal("deleteUser")
+    };
     useEffect(() => {
         const getProducts = async () => {
             const data = await getDocs(usersCollectionRef);
@@ -72,17 +72,38 @@ const UserEdit = () => {
                     ?.find((data) => data.id == id)
             );
             // setSkeleton(false);
+
         };
         getProducts();
     }, []);
 
+    const handleSubmit = useCallback(
+        async (e) => {
+            setIsLoading(true);
+            e.preventDefault();
+            const docRef = doc(db, "user", id);
+            await updateDoc(docRef, {
+                userName,
+                pinCode
+            });
+            setIsLoading(false);
+            changeModal("userEdit");
+            // clearInputs();
+        },
+        [
+            userName,
+            pinCode
+        ]
+    );
+
     useEffect(() => {
+        setCurrentPinCode(user?.pinCode)
         setUserName(user?.userName)
-        console.log(user);
+        setPinCode(user?.pinCode)
     }, [user]);
 
     return (
-        <Layout title="Cadastro">
+        <Layout title="Editar">
             <form onSubmit={handleSubmit}>
                 <Input
                     name="Nome do usuário"
@@ -107,13 +128,17 @@ const UserEdit = () => {
                         {...props}
                     />
                 </div>
+                <p className="currentCode">O código de acesso atual é <b>{currentPinCode}</b></p>
                 <Button
-                    label={"ADICIONAR"}
+                    label={"EDITAR"}
                     type="submit"
                     isLoading={isLoading}
                 ></Button>
             </form>
             <Button label={"Voltar"} secondary={true} url={"/user"}></Button>
+            <Button icon tertiary={true} onClick={() => deleteUser()}>
+                <DeleteIcon />
+            </Button>
         </Layout>
     );
 };

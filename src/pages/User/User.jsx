@@ -42,6 +42,7 @@ const User = () => {
                     <ShelfUser
                         id={item?.id}
                         userName={item?.userName}
+                        pinCode={item?.pinCode}
                         products={products}
                     />
                 ))}

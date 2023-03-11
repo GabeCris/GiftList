@@ -33,7 +33,7 @@ const InitialPage = () => {
                     </>
                 ))}
             </section>
-            <Button label={"Filtrar"} url={"/products"} />
+            <Button label={"FILTRAR"} url={"/products"} />
             <Button label={"Sair"} url={"/"} secondary={true} />
             <Button url={"/user"} icon>
                 <UserIcon />

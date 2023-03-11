@@ -46,7 +46,31 @@ const Modal = ({ buildModal }) => {
                         Entendi
                     </button>
                 );
+            case "userEdit":
+                return (
+                    <button
+                        className="layout-button"
+                        onClick={() => {
+                            navigate("/user");
+                            changeModal();
+                        }}
+                    >
+                        Entendi
+                    </button>
+                );
             case "userRegistration":
+                return (
+                    <button
+                        className="layout-button"
+                        onClick={() => {
+                            navigate("/user");
+                            changeModal();
+                        }}
+                    >
+                        Entendi
+                    </button>
+                );
+            case "deleteUser":
                 return (
                     <button
                         className="layout-button"

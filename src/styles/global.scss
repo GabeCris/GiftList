@@ -41,6 +41,9 @@ button{
         .inputCode{
             @include centralize($direction: column);
         }
+        .currentCode{
+            margin-block: 20px;
+        }
     }
     &-header{
         padding-inline: 20px;
