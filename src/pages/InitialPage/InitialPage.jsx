@@ -4,6 +4,9 @@ import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Layout from "../../components/Layout/Layout";
 import { reactCodeInput } from "react-code-input";
+import { useParams } from "react-router-dom";
+import { db } from "../../config/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 const props = {
     className: reactCodeInput,
@@ -38,8 +41,24 @@ const props = {
 
 const InitialPage = () => {
     const [step, setStep] = useState(1);
-    const br = "%0a";
-    const spc = "%20";
+    const [users, setUsers] = useState();
+    const [filteredUser, setFilteredUser] = useState();
+    const myHash = window.location.hash;
+
+    useEffect(() => {
+        const getUsers = async () => {
+            const usersCollectionsRef = collection(db, "user");
+            const data = await getDocs(usersCollectionsRef);
+            setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        };
+        getUsers();
+    }, []);
+
+    useEffect(() => {
+        setFilteredUser(users?.filter(user => user.userName.toLowerCase().replace(" ", "_") == myHash?.replace("#", ""))?.map(user => user))
+        console.log(users?.map(item => item.userName.toLowerCase().replace(" ", "_")))
+        console.log(filteredUser)
+    }, [users])
 
     return (
         <Layout>
@@ -52,6 +71,7 @@ const InitialPage = () => {
                         name="Nome de usuário"
                         placeholder="Informe o seu nome"
                         required
+                        value={filteredUser && filteredUser[0]?.userName}
                         type={"text"}
                     ></Input>
                     <Button label={"Próximo"} onClick={() => setStep(2)} />
@@ -64,7 +84,9 @@ const InitialPage = () => {
                     <ReactCodeInput
                         type="number"
                         fields={4}
+                        value={filteredUser && filteredUser[0]?.pinCode}
                         placeholder={"0"}
+                        autoFocus={false}
                         {...props}
                     />
                     <Button label={"Entrar"} url="/filter" />

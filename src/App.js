@@ -19,6 +19,7 @@ const App = () => {
                 <ModalProvider>
                     <Routes>
                         <Route path="/" element={<InitialPage />} />
+                        <Route path="/:id" element={<InitialPage />} />
                         <Route path="/filter" element={<Filter />} />
                         <Route path="/user" element={<User />} />
                         <Route path="/products" element={<Products />} />
