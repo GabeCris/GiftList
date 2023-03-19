@@ -16,7 +16,13 @@ const User = () => {
         const getUsers = async () => {
             const usersCollectionsRef = collection(db, "user");
             const data = await getDocs(usersCollectionsRef);
-            setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+            setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })).sort((a, b) => {
+                if (a.userName < b.userName) {
+                    return -1;
+                } else if (a.userName > b.userName) {
+                    return true;
+                }
+            }));
             setView(false);
         };
         getUsers();

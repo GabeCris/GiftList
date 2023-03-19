@@ -28,10 +28,11 @@ function Input(props) {
                     config={currencyConfig}
                     className={"input"}
                     id={props.name}
+                    defaultValue={5555}
                     {...props}
                 />
             ) : (
-                <input className={"input"} id={props.name} {...props} />
+                <input className={"input"} id={props.name} {...props}/>
             )}
         </div>
     );
