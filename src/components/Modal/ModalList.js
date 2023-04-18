@@ -1,13 +1,13 @@
 export const ModalList = [
   {
     action: "reserve",
-    title: "Atenção",
-    text: "TEM CERTEZA QUE DESEJA EFETUAR A RESERVA?\nEla é apenas para controle e organização dos noivos, não tendo relação com as lojas terceiras.",
+    title: "Deseja reservar?",
+    text: "A reserva deste produto é apenas para controle e organização dos noivos, não há relação com as lojas terceiras.",
   },
   {
     action: "cancelReserve",
-    title: "Atenção",
-    text: "Você cancelou sua reserva, mas poderá efetuá-la novamente!",
+    title: "Desfazer reserva?",
+    text: "Ao fazer isso este produto não estará mais em seu nome, mas poderá ser reservado novamente!",
   },
   {
     action: "registered",

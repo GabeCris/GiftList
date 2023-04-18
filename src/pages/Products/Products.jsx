@@ -40,7 +40,6 @@ const Products = () => {
     <Layout>
       <Filter />
       <section className="products-container">
-        {/* <Popup>Gabriel, Teste</Popup> */}
         {view && Array.from(Array(6)).map(() => <Skeleton />)}
         {filteredProducts?.map((item) => (
           <ShelfProduct props={item} />

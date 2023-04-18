@@ -8,7 +8,7 @@ import { GiftIcon, GiftOpenIcon } from "../Icons";
 import { useUser } from "../../contexts/UserContext";
 
 const ShelfProduct = ({ props }) => {
-  const { changeModal } = useModal();
+  const { openModal } = useModal();
   const { changeReserve } = useReserve();
   const userId = localStorage.getItem("userId");
 
@@ -51,16 +51,21 @@ const ShelfProduct = ({ props }) => {
   };
 
   const makeReserve = () => {
-    changeModal(
+    openModal(
       "reserve",
 
-      changeReserve(userId, props.id, "unavailable")
+      () => changeReserve(userId, props.id, "unavailable")
     );
   };
 
   const cancelReserve = () => {
-    changeModal("cancelReserve");
-    changeReserve("", props.id, "available");
+    openModal(
+      "cancelReserve",
+
+      () => {
+        changeReserve("", props.id, "available");
+      }
+    );
   };
 
   return (
@@ -81,10 +86,10 @@ const ShelfProduct = ({ props }) => {
       </div>
       <h2 className="shelfProduct-name">{props.productName}</h2>
       <p className="shelfProduct-price">{formatPrice(props.productPrice)}</p>
-      {checkUserId("500") ? (
-        <Button label="Não" onClick={() => cancelReserve()} />
-        ) : (
-        <Button label="cancelar" onClick={() => cancelReserve()} />
+      {!checkUserId() ? (
+        changeButton()
+      ) : (
+        <Button label="Desfazer" onClick={() => cancelReserve()} />
       )}
     </div>
   );
