@@ -8,55 +8,55 @@ import { db } from "../../config/firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useFilter } from "../../contexts/FilterContext";
 import Skeleton from "../../components/Skeleton";
+import Popup from "../../components/Popup/Popup";
 
 const Products = () => {
-    const usersCollectionsRef = collection(db, "products");
-    const { selected } = useFilter();
-    const [products, setProducts] = useState();
-    const [filteredProducts, setFilteredProducts] = useState();
-    const [view, setView] = useState(true);
+  const usersCollectionsRef = collection(db, "products");
+  const { selected } = useFilter();
+  const [products, setProducts] = useState();
+  const [filteredProducts, setFilteredProducts] = useState();
+  const [view, setView] = useState(true);
 
-    useEffect(() => {
-        const getProducts = async () => {
-            const data = await getDocs(usersCollectionsRef);
-            setProducts(
-                data.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-            );
-            setView(false);
-        };
-        getProducts();
-    }, []);
+  useEffect(() => {
+    const getProducts = async () => {
+      const data = await getDocs(usersCollectionsRef);
+      setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      setView(false);
+    };
+    getProducts();
+  }, []);
 
-    useEffect(() => {
-        setFilteredProducts(
-            selected.label !== "Todas"
-                ? products?.filter(
-                      (product) => product.productCategory === selected.label
-                  )
-                : products?.map((product) => product)
-        );
-    }, [selected, products]);
-
-    return (
-        <Layout>
-            <Filter />
-            <section className="products-container">
-                {view && Array.from(Array(6)).map(() => <Skeleton />)}
-                {filteredProducts?.map((item) => (
-                    <ShelfProduct props={item} />
-                ))}
-            </section>
-            <section className="info-button">
-                <p>
-                    Clique no <GiftOpenIcon /> <b>presente aberto</b> para
-                    reservar um produto!
-                </p>
-                <Button url={"/filter"} icon>
-                    <LogoutIcon/>
-                </Button>
-            </section>
-        </Layout>
+  useEffect(() => {
+    setFilteredProducts(
+      selected.label !== "Todas"
+        ? products?.filter(
+            (product) => product.productCategory === selected.label
+          )
+        : products?.map((product) => product)
     );
+  }, [selected, products]);
+
+  return (
+    <Layout>
+      <Filter />
+      <section className="products-container">
+        {/* <Popup>Gabriel, Teste</Popup> */}
+        {view && Array.from(Array(6)).map(() => <Skeleton />)}
+        {filteredProducts?.map((item) => (
+          <ShelfProduct props={item} />
+        ))}
+      </section>
+      <section className="info-button">
+        <p>
+          Clique no <GiftOpenIcon /> <b>presente aberto</b> para reservar um
+          produto!
+        </p>
+        <Button url={"/filter"} icon>
+          <LogoutIcon />
+        </Button>
+      </section>
+    </Layout>
+  );
 };
 
 export default Products;

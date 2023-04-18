@@ -48,7 +48,8 @@ const InitialPage = () => {
   const [dbUserName, setDbUsername] = useState();
   const [dbUserPinCode, setDbPinCode] = useState();
   const myHash = window.location.hash;
-  const { userName, setUserName, pinCode, setPinCode } = useUser();
+  const { userName, setUserName, pinCode, setPinCode, userId, setUserId } =
+    useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -57,7 +58,6 @@ const InitialPage = () => {
       const data = await getDocs(usersCollectionsRef);
       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
-    // console.log(users);
     getUsers();
   }, []);
 
@@ -79,6 +79,7 @@ const InitialPage = () => {
     const dataUser = users.find((user) => user.userName === userName);
     setDbUsername(dataUser?.userName);
     setDbPinCode(dataUser?.pinCode);
+    localStorage.setItem("userId", dataUser?.id);
     console.log(dataUser);
   };
 

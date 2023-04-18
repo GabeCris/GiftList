@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { EditIcon, GiftIcon, GiftOpenIcon } from "../Icons";
 
 const ShelfEdit = ({ props }) => {
+    console.log(props)
     const navigate = useNavigate();
     const changeGiftIcon = () => {
         switch (props.productStatus || props.status) {

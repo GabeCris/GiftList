@@ -4,28 +4,25 @@ import Modal from "../../components/Modal";
 import { ModalContext } from "./ModalContext";
 
 function ModalProvider({ children }) {
-    const [showModal, setShowModal] = useState(false);
-    const [buildModal, setBuildModal] = useState("");
+  const [modal, setModal] = useState(null);
 
-    const changeModal = useCallback(
-        (data) => {
-            setBuildModal(data);
-            setShowModal(!showModal);
-        },
-        [showModal, buildModal]
-    );
+  const openModal = (action, onButtonClick) => {
+    setModal({
+      action,
+      onButtonClick,
+    });
+  };
 
-    return (
-        <ModalContext.Provider
-            value={{
-                changeModal,
-                showModal,
-            }}
-        >
-            <Modal buildModal={buildModal} />
-            {children}
-        </ModalContext.Provider>
-    );
+  const closeModal = () => {
+    setModal(null);
+  };
+
+  return (
+    <ModalContext.Provider value={{ modal, openModal, closeModal }}>
+      <Modal />
+      {children}
+    </ModalContext.Provider>
+  );
 }
 
 export default ModalProvider;

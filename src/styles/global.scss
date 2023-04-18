@@ -203,7 +203,11 @@ button {
     justify-content: center;
     align-items: center;
     padding: 20px;
-
+    &-buttons{
+      margin-top: 20px;
+      display: flex;
+      gap: 20px;
+    }
     &-box {
       width: 100%;
       max-width: 400px;
@@ -212,7 +216,7 @@ button {
       background-color: $white-color;
       border-radius: 10px;
       @include centralize($direction: column);
-
+      
       button {
         margin-top: 0;
         text-transform: uppercase;
@@ -221,6 +225,11 @@ button {
         font-size: 12px;
         line-height: 15px;
         letter-spacing: 0.15em;
+      }
+      .layout-button-secondary{
+        border-radius: 10px;
+        border: 1px solid $primary-color;
+        height: auto;
       }
     }
 
@@ -354,7 +363,6 @@ button {
       font-weight: 700;
       line-height: 16px;
       border-radius: 0;
-
       a {
         color: $primary-color;
       }
