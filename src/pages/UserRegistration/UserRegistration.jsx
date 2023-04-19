@@ -9,6 +9,7 @@ import { addDoc, collection } from "firebase/firestore";
 import formatPrice from "../../utils/formatPrice";
 import { useModal } from "../../contexts/ModalContext";
 import ReactCodeInput, { reactCodeInput } from "react-code-input";
+import { useNavigate } from "react-router-dom";
 
 const props = {
   className: reactCodeInput,
@@ -42,22 +43,19 @@ const props = {
 };
 
 const UserRegistration = () => {
-  const { changeModal } = useModal();
+  const { openModal } = useModal();
   const usersCollectionRef = collection(db, "user");
   const [isLoading, setIsLoading] = useState(false);
   const [userName, setUserName] = useState();
   const [pinCode, setPinCode] = useState("0212");
+  const navigate = useNavigate();
 
-  const handleSubmit = useCallback(
-    async (e) => {
-      setIsLoading(true);
-      e.preventDefault();
-      await addDoc(usersCollectionRef, { userName, pinCode });
-      setIsLoading(false);
-      changeModal("userRegistration");
-    },
-    [userName, pinCode]
-  );
+  const userRegister = useCallback(async () => {
+    setIsLoading(true);
+    await addDoc(usersCollectionRef, { userName, pinCode });
+    setIsLoading(false);
+    navigate("/user");
+  }, [userName, pinCode]);
 
   const handlePinChange = (pinCode) => {
     setPinCode(pinCode);
@@ -65,7 +63,7 @@ const UserRegistration = () => {
 
   return (
     <Layout title="Cadastro">
-      <form onSubmit={handleSubmit}>
+      <form>
         <Input
           name="Nome do usuário"
           placeholder="Informe o nome"
@@ -90,8 +88,11 @@ const UserRegistration = () => {
         </div>
         <Button
           label={"ADICIONAR"}
-          type="submit"
           isLoading={isLoading}
+          onClick={(e) => {
+            e.preventDefault();
+            openModal("userRegistration", () => userRegister());
+          }}
         ></Button>
       </form>
       <Button label={"Voltar"} secondary={true} url={"/user"}></Button>

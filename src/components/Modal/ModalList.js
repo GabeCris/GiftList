@@ -16,27 +16,27 @@ export const ModalList = [
   },
   {
     action: "edited",
-    title: "Produto editado",
-    text: "A edição do produto foi realizado com sucesso!",
+    title: "Editar produto?",
+    text: "As alterações realizadas terão efeito para todos os usuários!",
   },
   {
     action: "deleteReserve",
-    title: "Produto deletado",
-    text: "O produto foi deletado do banco de dados!",
+    title: "Deletar produto?",
+    text: "Esta ação não poderá ser desfeita, e o produto será apagado do banco de dados!",
   },
   {
     action: "deleteUser",
-    title: "Usuário deletado",
-    text: "O usuário foi deletado do banco de dados!",
+    title: "Deletar usuário?",
+    text: "Esta ação não poderá ser desfeita, e o usuário será apagado do banco de dados!",
   },
   {
     action: "userRegistration",
-    title: "Usuário cadastrado",
-    text: "O nome e o código de acesso foram salvos no banco de dados!",
+    title: "Cadastrar usuário?",
+    text: "O nome e o código de acesso serão salvos no banco de dados!",
   },
   {
     action: "userEdit",
-    title: "Usuário editado",
-    text: "A edição do usuario foi realizado com sucesso!",
+    title: "Editar usuário?",
+    text: "As alterações realizadas terão efeito para o usuário!",
   },
 ];
