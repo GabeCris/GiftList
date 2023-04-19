@@ -13,9 +13,6 @@ const InitialPage = () => {
 
   return (
     <Layout title="Categorias">
-      <button onClick={() => openModal("reserve", () => alert("teste"))}>
-        CLICA
-      </button>
       <h2 className="layout-content-title">Filtre por categoria</h2>
       <section className="layout-filter-container">
         {iconsFilterList.map(({ label, icon }) => (

@@ -95,7 +95,6 @@ const EditProduct = () => {
         setProductPrice(product?.productPrice);
         setProductUrl(product?.productUrl);
         setProductUrlImage(product?.productUrlImage);
-        console.log(product);
     }, [product]);
 
     return (
@@ -108,7 +107,6 @@ const EditProduct = () => {
                     value={productName}
                     onChange={(e) => setProductName(e.target.value)}
                     type={"text"}
-                    minLength={6}
                 ></Input>
                 <CategoryRow
                     selected={productCategory}

@@ -112,7 +112,6 @@ const UserEdit = () => {
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
                     type={"text"}
-                    minLength={6}
                 ></Input>
                 <div className="inputCode">
                     <label htmlFor="" className="inputLabel">

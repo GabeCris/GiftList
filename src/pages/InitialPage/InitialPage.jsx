@@ -80,7 +80,6 @@ const InitialPage = () => {
     setDbUsername(dataUser?.userName);
     setDbPinCode(dataUser?.pinCode);
     localStorage.setItem("userId", dataUser?.id);
-    console.log(dataUser);
   };
 
   const handlePinChange = (pinCode) => {
