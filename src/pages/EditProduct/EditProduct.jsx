@@ -139,7 +139,7 @@ const EditProduct = () => {
           ></Input>
         </div>
         <Button
-          label={"EDITAR"}
+          label={"Editar"}
           isLoading={isLoading}
           onClick={(e) => {
             e.preventDefault();

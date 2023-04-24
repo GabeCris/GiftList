@@ -131,7 +131,7 @@ const UserEdit = () => {
           O código de acesso atual é <b>{currentPinCode}</b>
         </p>
         <Button
-          label={"EDITAR"}
+          label={"Editar"}
           isLoading={isLoading}
           onClick={(e) => {
             e.preventDefault();

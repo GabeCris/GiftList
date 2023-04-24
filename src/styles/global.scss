@@ -39,6 +39,16 @@ button {
       .inputContainer {
         margin-bottom: 0;
       }
+      .layout-button-secondary {
+        margin-top: 30px;
+      }
+      .error-message {
+        color: $primary-color;
+        margin-block: 8px;
+        &:empty {
+          display: none;
+        }
+      }
     }
 
     .inputCode {
@@ -155,22 +165,6 @@ button {
 
     &:has(.layout-filter-container) {
       .layout-button {
-        &:nth-last-child(-n + 2) {
-          position: fixed;
-          right: 20px;
-          bottom: 15px;
-          margin: 0;
-          width: fit-content;
-          height: 40px;
-          padding-inline: 20px;
-          gap: 10px;
-          background-color: $light-gray-color;
-          
-          svg {
-            height: 25px;
-          }
-        }
-
         &:nth-last-child(2) {
           right: auto;
           left: 20px;
@@ -206,7 +200,7 @@ button {
     justify-content: center;
     align-items: center;
     padding: 20px;
-    &-buttons{
+    &-buttons {
       margin-top: 20px;
       display: flex;
       gap: 20px;
@@ -219,7 +213,7 @@ button {
       background-color: $white-color;
       border-radius: 10px;
       @include centralize($direction: column);
-      
+
       button {
         margin-top: 0;
         text-transform: uppercase;
@@ -229,7 +223,7 @@ button {
         line-height: 15px;
         letter-spacing: 0.15em;
       }
-      .layout-button-secondary{
+      .layout-button-secondary {
         border-radius: 10px;
         border: 1px solid $primary-color;
         height: auto;

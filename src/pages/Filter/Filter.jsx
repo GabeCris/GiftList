@@ -5,11 +5,16 @@ import { iconsFilterList } from "./List";
 import { useFilter } from "../../contexts/FilterContext/FilterContext";
 import { EditIcon, UserIcon } from "../../components/Icons";
 import { useModal } from "../../contexts/ModalContext";
-import Popup from "../../components/Popup/Popup";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../contexts/UserContext";
 
 const InitialPage = () => {
   const { selected, setSelected } = useFilter();
+  const userId = localStorage.getItem("userId");
+  const adminIds = ["NX5JDD0ih5DZHmwO7LXI", "vZKEfCkXnraXgS4sLn1b"];
+  const navigate = useNavigate();
   const { openModal } = useModal();
+  const { clearData } = useUser();
 
   return (
     <Layout title="Categorias">
@@ -35,14 +40,27 @@ const InitialPage = () => {
           </>
         ))}
       </section>
-      <Button label={"FILTRAR"} url={"/products"} />
-      <Button label={"Sair"} url={"/"} secondary={true} />
-      <Button url={"/user"} icon>
-        <UserIcon />
-      </Button>
-      <Button url={"/edit"} icon>
-        <EditIcon />
-      </Button>
+      <Button label={"Filtrar"} url={"/products"} />
+      <Button
+        label={"Sair"}
+        secondary={true}
+        onClick={() =>
+          openModal("logout", () => {
+            navigate("/login");
+            clearData();
+          })
+        }
+      />
+      {adminIds.includes(userId) && (
+        <>
+          <Button tertiary url={"/user"} icon>
+            <UserIcon />
+          </Button>
+          <Button tertiary url={"/edit"} icon>
+            <EditIcon />
+          </Button>
+        </>
+      )}
     </Layout>
   );
 };

@@ -39,4 +39,9 @@ export const ModalList = [
     title: "Editar usuário?",
     text: "As alterações realizadas terão efeito para o usuário!",
   },
+  {
+    action: "logout",
+    title: "Deseja sair?",
+    text: "Você será desconectado do seu acesso de usuário!",
+  },
 ];

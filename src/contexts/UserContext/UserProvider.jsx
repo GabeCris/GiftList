@@ -5,6 +5,10 @@ function UserProvider({ children }) {
   const [userName, setUserName] = useState("");
   const [pinCode, setPinCode] = useState("");
   const [userId, setUserId] = useState("");
+  const clearData = () => {
+    setUserName("");
+    setPinCode("");
+  };
 
   return (
     <UserContext.Provider
@@ -15,6 +19,7 @@ function UserProvider({ children }) {
         setPinCode,
         userId,
         setUserId,
+        clearData,
       }}
     >
       {children}

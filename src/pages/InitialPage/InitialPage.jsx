@@ -1,11 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import ReactCodeInput from "react-code-input";
 import Button from "../../components/Button";
 import Input from "../../components/Input";
 import Layout from "../../components/Layout/Layout";
 import { reactCodeInput } from "react-code-input";
 import { useNavigate } from "react-router-dom";
-import { useParams } from "react-router-dom";
 import { db } from "../../config/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { useUser } from "../../contexts/UserContext";
@@ -44,12 +43,12 @@ const props = {
 const InitialPage = () => {
   const [step, setStep] = useState(1);
   const [users, setUsers] = useState();
-  const [filteredUser, setFilteredUser] = useState();
   const [dbUserName, setDbUsername] = useState();
   const [dbUserPinCode, setDbPinCode] = useState();
   const myHash = window.location.hash;
-  const { userName, setUserName, pinCode, setPinCode, userId, setUserId } =
-    useUser();
+  const { userName, setUserName, pinCode, setPinCode } = useUser();
+  const [errorUserName, setErrorUserName] = useState("");
+  const [errorPinCode, setErrorPinCode] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -58,19 +57,22 @@ const InitialPage = () => {
       const data = await getDocs(usersCollectionsRef);
       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
+    localStorage.setItem("userId", "");
     getUsers();
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     teste();
-    if (step == 1 && dbUserName == userName) {
-      setStep(2);
+    if (step == 1) {
+      dbUserName == userName
+        ? setStep(2)
+        : setErrorUserName("Usuário não encontrado!");
     } else {
-      if (pinCode?.length === 4 && dbUserPinCode == pinCode) {
-        navigate("/filter");
-      } else {
-        alert("DADOS INVALIDOS");
+      if (pinCode?.length === 4) {
+        dbUserPinCode == pinCode
+          ? navigate("/filter")
+          : setErrorPinCode("Código incorreto!");
       }
     }
   };
@@ -83,20 +85,23 @@ const InitialPage = () => {
   };
 
   const handlePinChange = (pinCode) => {
+    setErrorPinCode("");
     setPinCode(pinCode);
   };
 
   useEffect(() => {
-    setFilteredUser(
-      users
-        ?.filter(
-          (user) =>
-            user.userName.toLowerCase().replace(" ", "_") ==
-            myHash?.replace("#", "")
-        )
-        ?.map((user) => user)
-    );
+    const { userName, pinCode } =
+      users?.find(
+        (user) =>
+          user.userName.toLowerCase().replace(" ", "_") ==
+          myHash?.replace("#", "")
+      ) ?? {};
+    if (userName) {
+      setUserName(userName);
+      setPinCode(pinCode);
+    }
   }, [users]);
+  console.log(userName);
 
   return (
     <Layout>
@@ -111,6 +116,7 @@ const InitialPage = () => {
               placeholder="Informe o seu nome"
               onChange={(e) => {
                 setUserName(e.target.value);
+                setErrorUserName("");
               }}
               value={userName}
               required
@@ -118,11 +124,12 @@ const InitialPage = () => {
               type={"text"}
               autoComplete={"off"}
             ></Input>
+            <span className="error-message">{errorUserName}</span>
             <Button
               type="submit"
               label={"Próximo"}
               onClick={() => teste()}
-              disabled={userName.length < 6 ? true : false}
+              disabled={userName < 6 ? true : false}
             />
           </>
         ) : (
@@ -134,10 +141,10 @@ const InitialPage = () => {
               type="number"
               fields={4}
               onChange={handlePinChange}
-              // value={filteredUser && filteredUser[0]?.pinCode}
               value={pinCode}
               {...props}
             />
+            <span className="error-message">{errorPinCode}</span>
             <Button
               type="submit"
               label={"Entrar"}
