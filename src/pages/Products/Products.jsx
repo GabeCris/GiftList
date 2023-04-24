@@ -16,6 +16,7 @@ const Products = () => {
   const [products, setProducts] = useState();
   const [filteredProducts, setFilteredProducts] = useState();
   const [view, setView] = useState(true);
+  const userId = localStorage.getItem("userId");
 
   useEffect(() => {
     const getProducts = async () => {
@@ -29,11 +30,50 @@ const Products = () => {
   useEffect(() => {
     setFilteredProducts(
       selected.label !== "Todas"
-        ? products?.filter(
-            (product) => product.productCategory === selected.label
-          )
-        : products?.map((product) => product)
+        ? products
+            ?.filter((product) => product.productCategory === selected.label)
+            .sort((a, b) => {
+              if (a.userId === userId && b.userId !== userId) {
+                return -1;
+              } else if (a.userId !== userId && b.userId === userId) {
+                return 1;
+              } else if (
+                a.productStatus === "available" &&
+                b.productStatus !== "available"
+              ) {
+                return -1;
+              } else if (
+                a.productStatus !== "available" &&
+                b.productStatus === "available"
+              ) {
+                return 1;
+              } else {
+                return a.productName.localeCompare(b.productName);
+              }
+            })
+        : products
+            ?.map((product) => product)
+            .sort((a, b) => {
+              if (a.userId === userId && b.userId !== userId) {
+                return -1;
+              } else if (a.userId !== userId && b.userId === userId) {
+                return 1;
+              } else if (
+                a.productStatus === "available" &&
+                b.productStatus !== "available"
+              ) {
+                return -1;
+              } else if (
+                a.productStatus !== "available" &&
+                b.productStatus === "available"
+              ) {
+                return 1;
+              } else {
+                return a.productName.localeCompare(b.productName);
+              }
+            })
     );
+    console.log(filteredProducts);
   }, [selected, products]);
 
   return (

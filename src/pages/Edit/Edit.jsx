@@ -35,14 +35,44 @@ const Edit = () => {
     getUsers();
   }, []);
 
-  console.log(users, "<<<<<<<<< USER")
+  console.log(users, "<<<<<<<<< USER");
   useEffect(() => {
     setFilteredProducts(
       selected.label !== "Todas"
-        ? products?.filter(
-            (product) => product.productCategory === selected.label
-          )
-        : products?.map((product) => product)
+        ? products
+            ?.filter((product) => product.productCategory === selected.label)
+            .sort((a, b) => {
+              if (
+                a.productStatus === "unavailable" &&
+                b.productStatus !== "unavailable"
+              ) {
+                return -1;
+              } else if (
+                a.productStatus !== "unavailable" &&
+                b.productStatus === "unavailable"
+              ) {
+                return 1;
+              } else {
+                return a.productName.localeCompare(b.productName);
+              }
+            })
+        : products
+            ?.map((product) => product)
+            .sort((a, b) => {
+              if (
+                a.productStatus === "unavailable" &&
+                b.productStatus !== "unavailable"
+              ) {
+                return -1;
+              } else if (
+                a.productStatus !== "unavailable" &&
+                b.productStatus === "unavailable"
+              ) {
+                return 1;
+              } else {
+                return a.productName.localeCompare(b.productName);
+              }
+            })
     );
   }, [selected, products]);
 
