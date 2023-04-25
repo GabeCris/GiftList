@@ -280,6 +280,14 @@ button {
       height: 99px;
       border-radius: 50%;
       background-color: $light-gray-color;
+      @media only screen and (max-width: 360px) {
+        width: 80px;
+        height: 80px;
+        svg {
+          width: 40px;
+          height: 40px;
+        }
+      }
     }
 
     &-label {
@@ -560,14 +568,10 @@ button {
     @include centralize(flex-start, flex-start, column);
 
     @media only screen and (max-width: 370px) {
-      width: 150px;
-    }
-
-    @media only screen and (max-width: 355px) {
       width: 41vw;
     }
 
-    @media only screen and (max-width: 325px) {
+    @media only screen and (max-width: 320px) {
       width: 100%;
     }
 
