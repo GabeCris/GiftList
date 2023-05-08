@@ -120,7 +120,6 @@ const InitialPage = () => {
               }}
               value={userName}
               required
-              minLength="6"
               type={"text"}
               autoComplete={"off"}
             ></Input>
