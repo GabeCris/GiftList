@@ -3,7 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import Filter from "../../components/Filter";
 import Button from "../../components/Button";
 import ShelfProduct from "../../components/ShelfProduct";
-import { GiftOpenIcon, LogoutIcon } from "../../components/Icons";
+import { GiftIcon, GiftOpenIcon, LogoutIcon } from "../../components/Icons";
 import { db } from "../../config/firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useFilter } from "../../contexts/FilterContext";
@@ -73,8 +73,11 @@ const Products = () => {
               }
             })
     );
-    console.log(filteredProducts);
   }, [selected, products]);
+
+  const hasReservated = products?.find(
+    (item) => item.userId === userId
+  )?.productName;
 
   return (
     <Layout>
@@ -86,10 +89,20 @@ const Products = () => {
         ))}
       </section>
       <section className="info-button">
-        <p>
-          Clique no <GiftOpenIcon /> <b>presente aberto</b> para reservar um
-          produto!
-        </p>
+        {hasReservated ? (
+          <p>
+            Clique no{" "}
+            <span>
+              <GiftIcon />
+            </span>{" "}
+            <b>presente fechado</b> para desfazer a reserva!
+          </p>
+        ) : (
+          <p>
+            Clique no <GiftOpenIcon /> <b>presente aberto</b> para reservar um
+            produto!
+          </p>
+        )}
         <Button url={"/filter"} icon>
           <LogoutIcon />
         </Button>

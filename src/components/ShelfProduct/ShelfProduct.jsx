@@ -15,10 +15,6 @@ const ShelfProduct = ({ props }) => {
   const checkUserId = () => {
     return props.userId === userId;
   };
-
-  //   console.log(props);
-
-  //   console.log(userId, "<<<<<<<<<<,ID DE USUARIO");
   const changeButton = () => {
     switch (props.productStatus || props.status) {
       case "available":
@@ -43,7 +39,7 @@ const ShelfProduct = ({ props }) => {
         );
       default:
         return (
-          <div className="giftBox">
+          <div className="giftBox" onClick={() => cancelReserve()}>
             <GiftIcon />
           </div>
         );
@@ -89,7 +85,9 @@ const ShelfProduct = ({ props }) => {
       {!checkUserId() ? (
         changeButton()
       ) : (
-        <Button label="Desfazer" onClick={() => cancelReserve()} />
+        <>
+          <Button label="Ver no site" external={true} url={props.productUrl} />
+        </>
       )}
     </div>
   );
