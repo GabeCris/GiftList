@@ -5,7 +5,7 @@ const PrivateRoute = () => {
   const isAuthenticated = localStorage.getItem("userId");
   const currentRoute = window.location.pathname;
 
-  return isAuthenticated || currentRoute !== "/" ? (
+  return isAuthenticated && currentRoute !== "/" ? (
     <Outlet />
   ) : (
     <Navigate to={"/login"} />
