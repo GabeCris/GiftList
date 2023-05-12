@@ -6,7 +6,7 @@ import Layout from "../../components/Layout/Layout";
 import { reactCodeInput } from "react-code-input";
 import { useNavigate } from "react-router-dom";
 import { db } from "../../config/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, addDoc } from "firebase/firestore";
 import { useUser } from "../../contexts/UserContext";
 
 const props = {
@@ -73,6 +73,7 @@ const InitialPage = () => {
         dbUserPinCode == pinCode
           ? navigate("/filter")
           : setErrorPinCode("Código incorreto!");
+        handleHistoryUser(userName);
       }
     }
   };
@@ -82,6 +83,45 @@ const InitialPage = () => {
     setDbUsername(dataUser?.userName);
     setDbPinCode(dataUser?.pinCode);
     localStorage.setItem("userId", dataUser?.id);
+  };
+
+  const getDataHoraFormatada = () => {
+    var data = new Date();
+
+    var dia = data.getDate();
+    if (dia < 10) {
+      dia = "0" + dia;
+    }
+
+    var mes = data.getMonth() + 1;
+    if (mes < 10) {
+      mes = "0" + mes;
+    }
+
+    var hora = data.getHours();
+    if (hora < 10) {
+      hora = "0" + hora;
+    }
+
+    var minutos = data.getMinutes();
+    if (minutos < 10) {
+      minutos = "0" + minutos;
+    }
+
+    var dataFormatada = dia + "/" + mes;
+    var horaFormatada = hora + ":" + minutos;
+
+    return { data: dataFormatada, hora: horaFormatada };
+  };
+
+  const handleHistoryUser = async (userName) => {
+    const historyCollectionsRef = collection(db, "history");
+    let dateResult = getDataHoraFormatada();
+    await addDoc(historyCollectionsRef, {
+      userName,
+      date: dateResult.data,
+      hour: dateResult.hora,
+    });
   };
 
   const handlePinChange = (pinCode) => {
@@ -101,7 +141,6 @@ const InitialPage = () => {
       setPinCode(pinCode);
     }
   }, [users]);
-  console.log(userName);
 
   return (
     <Layout>

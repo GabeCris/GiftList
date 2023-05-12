@@ -1,10 +1,14 @@
 import React from "react";
 
-const ShelfHistory = () => {
+const ShelfHistory = ({ props }) => {
+  const adminNames = ["Gabriel Crisanto", "Bruna Kailane"];
+
   return (
     <div className="shelfHistory">
-      <h3>Gabriel Crisanto dos Santos</h3>
-      <p>25/05 - 18:00</p>
+      <h3>{props?.userName}</h3>
+      <p>
+        {props?.date} - {props?.hour}
+      </p>
     </div>
   );
 };

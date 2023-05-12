@@ -22,12 +22,13 @@ export { default as AddIcon } from "./AddIcon";
 export { default as DeleteIcon } from "./DeleteIcon";
 export { default as UserIcon } from "./UserIcon";
 export { default as ShareIcon } from "./ShareIcon";
+export { default as HistoryIcon } from "./HistoryIcon";
 
 export const iconsFilterList = [
-    Bathtub,
-    BedIcon,
-    PanIcon,
-    TelevisionIcon,
-    WasherIcon,
-    ConfirmIcon,
+  Bathtub,
+  BedIcon,
+  PanIcon,
+  TelevisionIcon,
+  WasherIcon,
+  ConfirmIcon,
 ];

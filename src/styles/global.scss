@@ -165,9 +165,13 @@ button {
 
     &:has(.layout-filter-container) {
       .layout-button {
-        &:nth-last-child(2) {
+        &:nth-last-child(3) {
           right: auto;
           left: 20px;
+        }
+        &:nth-last-child(2) {
+          right: auto;
+          left: auto;
         }
       }
       .layout-button-secondary {

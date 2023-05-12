@@ -35,7 +35,6 @@ const Edit = () => {
     getUsers();
   }, []);
 
-  console.log(users, "<<<<<<<<< USER");
   useEffect(() => {
     setFilteredProducts(
       selected.label !== "Todas"

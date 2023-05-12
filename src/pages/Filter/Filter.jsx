@@ -3,7 +3,7 @@ import Layout from "../../components/Layout/Layout";
 import Button from "../../components/Button";
 import { iconsFilterList } from "./List";
 import { useFilter } from "../../contexts/FilterContext/FilterContext";
-import { EditIcon, UserIcon } from "../../components/Icons";
+import { EditIcon, HistoryIcon, UserIcon } from "../../components/Icons";
 import { useModal } from "../../contexts/ModalContext";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
@@ -55,6 +55,9 @@ const InitialPage = () => {
         <>
           <Button tertiary url={"/user"} icon>
             <UserIcon />
+          </Button>
+          <Button tertiary url={"/history"} icon>
+            <HistoryIcon />
           </Button>
           <Button tertiary url={"/edit"} icon>
             <EditIcon />
