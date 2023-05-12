@@ -12,6 +12,7 @@ import User from "./pages/User";
 import UserRegistration from "./pages/UserRegistration/UserRegistration";
 import UserEdit from "./pages/UserEdit";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import History from "./pages/History/History";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Routes>
             <Route path="*" element={<InitialPage />} />
             <Route path="/login" element={<InitialPage />} />
+            <Route path="/history" element={<History />} />
             <Route path="/" element={<PrivateRoute />}>
               <Route path=":id" element={<InitialPage />} />
               <Route path="filter" element={<Filter />} />

@@ -1025,7 +1025,8 @@ form {
 }
 
 .shelfEdit,
-.shelfUser {
+.shelfUser,
+.shelfHistory {
   @include centralize($justify: flex-start);
   gap: 16px;
   width: 100%;
@@ -1114,4 +1115,38 @@ form {
     gap: 5px;
     @include centralize($align: flex-start, $direction: column);
   }
+}
+
+.shelfHistory {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 20px;
+  height: 45px;
+  h3 {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 17px;
+    letter-spacing: 0.05em;
+    color: #000000;
+    white-space: nowrap;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  p {
+    white-space: nowrap;
+  }
+}
+
+.layout-content:has(.history-container) {
+  overflow-y: scroll;
+  padding-bottom: 80px;
+}
+
+.history-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
 }
