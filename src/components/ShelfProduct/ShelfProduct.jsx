@@ -15,6 +15,7 @@ const ShelfProduct = ({ props }) => {
   const checkUserId = () => {
     return props.userId === userId;
   };
+
   const changeButton = () => {
     switch (props.productStatus || props.status) {
       case "available":
@@ -38,8 +39,12 @@ const ShelfProduct = ({ props }) => {
           </div>
         );
       default:
-        return (
+        return checkUserId() ? (
           <div className="giftBox" onClick={() => cancelReserve()}>
+            <GiftIcon />
+          </div>
+        ) : (
+          <div className="giftBox">
             <GiftIcon />
           </div>
         );
