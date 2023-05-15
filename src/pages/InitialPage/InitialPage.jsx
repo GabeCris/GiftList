@@ -133,7 +133,7 @@ const InitialPage = () => {
     const { userName, pinCode } =
       users?.find(
         (user) =>
-          user.userName.toLowerCase().replace(" ", "_") ==
+          user.userName.toLowerCase().replace(" ", "_").replace(" ", "_") ==
           myHash?.replace("#", "")
       ) ?? {};
     if (userName) {
