@@ -48,7 +48,7 @@ const Products = () => {
               ) {
                 return 1;
               } else {
-                return a.productName.localeCompare(b.productName);
+                return b.productPrice - a.productPrice; // Ordenar por preço
               }
             })
         : products
@@ -69,11 +69,12 @@ const Products = () => {
               ) {
                 return 1;
               } else {
-                return a.productName.localeCompare(b.productName);
+                return b.productPrice - a.productPrice; // Ordenar por preço
               }
             })
     );
   }, [selected, products]);
+  
 
   const hasReservated = products?.find(
     (item) => item.userId === userId
