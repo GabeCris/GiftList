@@ -1145,6 +1145,19 @@ form {
 .layout-content:has(.history-container) {
   overflow-y: scroll;
   padding-bottom: 80px;
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $light-gray-color;
+    border-radius: 44px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $dark-gray-color;
+    border-radius: 42px;
+  }
 }
 
 .history-container {
