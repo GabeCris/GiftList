@@ -1,15 +1,18 @@
 import React from "react";
+import { useUser } from "../../contexts/UserContext";
 
 const ShelfHistory = ({ props }) => {
   const adminNames = ["Gabriel Crisanto", "Bruna Kailane"];
 
   return (
-    <div className="shelfHistory">
-      <h3>{props?.userName}</h3>
-      <p>
-        {props?.date} - {props?.hour}
-      </p>
-    </div>
+    !adminNames.includes(props?.userName) && (
+      <div className="shelfHistory">
+        <h3>{props?.userName}</h3>
+        <p>
+          {props?.date} - {props?.hour}
+        </p>
+      </div>
+    )
   );
 };
 
