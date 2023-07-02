@@ -6,6 +6,9 @@ const Layout = ({ children, title = "Lista Presentes" }) => {
   const location = useLocation();
   const [isInitialPage, setIsInitialPage] = useState();
 
+  const adminUsers = ["NX5JDD0ih5DZHmwO7LXI", "vZKEfCkXnraXgS4sLn1b"];
+  const userId = localStorage.getItem("userId");
+
   const [changeLogoCounter, setChangeLogoCounter] = useState(true);
 
   const dataFixa = new Date("2023/12/02");
@@ -71,7 +74,13 @@ const Layout = ({ children, title = "Lista Presentes" }) => {
         <img src="../assets/flower-title.svg" className="flower-background-2" />
         <img src="../assets/logo-footer-desk.svg" className="footer-desktop" />
       </header>
-      <main className="layout-content">{children}</main>
+      <main
+        className={`layout-content ${
+          adminUsers.includes(userId) ? "" : "layout-content-user"
+        }`}
+      >
+        {children}
+      </main>
     </section>
   );
 };
