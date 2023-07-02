@@ -1182,6 +1182,9 @@ form {
   transition: 0.5s;
 
   position: relative;
+  @media only screen and (min-width: 1125px) {
+    display: none;
+  }
   img {
     transition: 0.5s;
     top: 5px;
