@@ -6,6 +6,30 @@ const Layout = ({ children, title = "Lista Presentes" }) => {
   const location = useLocation();
   const [isInitialPage, setIsInitialPage] = useState();
 
+  const [changeLogoCounter, setChangeLogoCounter] = useState(true);
+
+  const dataFixa = new Date("2023/12/02");
+
+  const dataAtual = new Date();
+  dataAtual.setHours(0, 0, 0, 0);
+
+  const diferencaEmMilissegundos = dataFixa - dataAtual;
+
+  const diferencaEmDias = Math.floor(
+    diferencaEmMilissegundos / (1000 * 60 * 60 * 24)
+  );
+
+  useEffect(() => {
+    // Inicia o setInterval para executar a cada 5 segundos
+    const interval = setInterval(() => {
+      // Altera o estado do elemento para o valor oposto
+      setChangeLogoCounter((prevState) => !prevState);
+    }, 5000);
+
+    // Limpa o setInterval quando o componente é desmontado
+    return () => clearInterval(interval);
+  }, []);
+
   useEffect(() => {
     if (location.pathname.startsWith("/login")) {
       setIsInitialPage(true);
@@ -27,7 +51,20 @@ const Layout = ({ children, title = "Lista Presentes" }) => {
           <section className="layout-header-content">
             <h1 className="layout-title">{title}</h1>
             <img src="../assets/flower-title.svg" className="flower-title" />
-            <img src="../assets/minimalist-logo.svg" className="logo" />
+            <div className="logo-counter">
+              <img
+                src="../assets/minimalist-logo.svg"
+                className={`logo ${changeLogoCounter ? "logo-hide" : null}`}
+              />
+              <div
+                className={`counter-days ${
+                  !changeLogoCounter ? "counter-hide" : null
+                }`}
+              >
+                <h2>Faltam {diferencaEmDias} dias</h2>
+                <span>02 dez 2023</span>
+              </div>
+            </div>
           </section>
         )}
         <img src="../assets/flower-title.svg" className="flower-background" />

@@ -1177,3 +1177,39 @@ form {
   gap: 10px;
   align-items: flex-start;
 }
+
+.logo-counter {
+  transition: 0.5s;
+
+  position: relative;
+  img {
+    transition: 0.5s;
+    top: 5px;
+    position: absolute;
+    right: 0;
+  }
+}
+
+.logo-hide {
+  transition: 0.5s;
+  opacity: 0;
+}
+.counter-hide {
+  transition: 0.5s;
+  opacity: 0;
+}
+.counter-days {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  h2 {
+    padding-block: 0;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 600;
+  }
+  span {
+    color: white;
+    font-size: 13px;
+  }
+}
