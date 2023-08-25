@@ -77,7 +77,7 @@ const ShelfProduct = ({ props }) => {
           : "shelfProduct-reserved"
       }`}
     >
-      {!props.highlight && <span className="shelfProduct-highlight">Destaque!</span>}
+      {props.productHighlight && <span className="shelfProduct-highlight">Destaque!</span>}
       {changeGiftIcon()}
       <div className="shelfProduct-box-image">
         <img

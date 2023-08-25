@@ -871,7 +871,7 @@ button {
     @include centralize($justify: flex-start, $align: flex-end);
     gap: 15px;
     width: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 
     svg {
       min-width: 124px;
@@ -917,7 +917,7 @@ button {
     @include centralize($align: flex-start, $direction: column);
     gap: 10px;
     width: 100%;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     max-width: 413px;
   }
 
@@ -934,7 +934,7 @@ button {
       gap: 10px;
       width: 100%;
       @include centralize($direction: column, $align: flex-start);
-      margin-bottom: 25px;
+      margin-bottom: 20px;
     }
 
     &-items {
@@ -973,6 +973,18 @@ button {
         filter: grayscale(1.5);
       }
     }
+  }
+
+  &-highlight {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+    margin-top: 15px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    letter-spacing: 0.05em;
+    color: #000000;
   }
 }
 

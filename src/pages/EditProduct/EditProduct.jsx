@@ -35,6 +35,8 @@ const EditProduct = () => {
     productStatus,
     setProductUrlImage,
     clearInputs,
+    productHighlight,
+    setProductHighlight,
   } = useProduct();
   const defaultImage = "../assets/preview.svg";
 
@@ -55,11 +57,12 @@ const EditProduct = () => {
       productUrl,
       productUrlImage,
       productStatus,
+      productHighlight,
     });
     setIsLoading(false);
     clearInputs();
     navigate("/edit");
-  }, [productName, productCategory, productPrice, productUrl, productUrlImage]);
+  }, [productName, productCategory, productPrice, productUrl, productUrlImage, productHighlight]);
 
   const deleteProduct = async () => {
     const docRef = doc(db, "products", id);
@@ -78,6 +81,7 @@ const EditProduct = () => {
       );
       // setSkeleton(false);
     };
+    console.log(product, "MEU PRODUCT")
     getProducts();
   }, []);
 
@@ -87,6 +91,7 @@ const EditProduct = () => {
     setProductPrice(product?.productPrice);
     setProductUrl(product?.productUrl);
     setProductUrlImage(product?.productUrlImage);
+    setProductHighlight(product?.productHighlight)
   }, [product]);
 
   return (
@@ -138,6 +143,14 @@ const EditProduct = () => {
             onChange={(e) => setProductUrlImage(e.target.value)}
           ></Input>
         </div>
+        <label className="input-highlight">
+          <input
+            type="checkbox"
+            checked={productHighlight}
+            onChange={(e) => setProductHighlight(e.target.checked)}
+          />
+          Produto Destaque
+        </label>
         <Button
           label={"Editar"}
           isLoading={isLoading}
