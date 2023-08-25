@@ -39,12 +39,15 @@ button {
       .inputContainer {
         margin-bottom: 0;
       }
+
       .layout-button-secondary {
         margin-top: 30px;
       }
+
       .error-message {
         color: $primary-color;
         margin-block: 8px;
+
         &:empty {
           display: none;
         }
@@ -171,6 +174,7 @@ button {
           left: 20px;
           position: absolute !important;
         }
+
         &:nth-last-child(2) {
           right: auto;
           left: auto;
@@ -180,20 +184,21 @@ button {
           position: absolute !important;
         }
       }
+
       .layout-button-secondary {
         margin-top: 30px;
       }
     }
 
-    &-user {
-      &:has(.layout-filter-container) {
-        .layout-button {
-          &:nth-last-child(1) {
-            position: static !important;
-          }
-        }
-      }
-    }
+    // &-user {
+    //   &:has(.layout-filter-container) {
+    //     .layout-button {
+    //       &:nth-last-child(1) {
+    //         position: static !important;
+    //       }
+    //     }
+    //   }
+    // }
 
     @include centralize($direction: column, $justify: flex-start);
 
@@ -220,11 +225,13 @@ button {
     justify-content: center;
     align-items: center;
     padding: 20px;
+
     &-buttons {
       margin-top: 20px;
       display: flex;
       gap: 20px;
     }
+
     &-box {
       width: 100%;
       max-width: 400px;
@@ -243,6 +250,7 @@ button {
         line-height: 15px;
         letter-spacing: 0.15em;
       }
+
       .layout-button-secondary {
         border-radius: 10px;
         border: 1px solid $primary-color;
@@ -281,7 +289,7 @@ button {
         display: none;
 
         &:checked {
-          ~ .layout-filter-box {
+          ~.layout-filter-box {
             background-color: $primary-color;
 
             svg {
@@ -289,7 +297,7 @@ button {
             }
           }
 
-          ~ .layout-filter-label {
+          ~.layout-filter-label {
             font-weight: bold;
           }
         }
@@ -303,9 +311,11 @@ button {
       height: 99px;
       border-radius: 50%;
       background-color: $light-gray-color;
+
       @media only screen and (max-width: 430px) {
         width: 80px;
         height: 80px;
+
         svg {
           width: 40px;
           height: 40px;
@@ -388,6 +398,7 @@ button {
       font-weight: 700;
       line-height: 16px;
       border-radius: 0;
+
       a {
         color: $primary-color;
       }
@@ -565,11 +576,9 @@ button {
   }
 
   .shadow {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0) 70%,
-      #ffffff 100%
-    );
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0) 70%,
+        #ffffff 100%);
     position: sticky;
     bottom: 0;
     width: 100%;
@@ -754,6 +763,20 @@ button {
         background-color: $dark-gray-color;
       }
     }
+
+    &-highlight {
+      position: absolute;
+      background: #777;
+      padding: 3px 10px;
+      border-radius: 5px;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #fff;
+      top: 6px;
+      right: 30px;
+    }
   }
 }
 
@@ -762,6 +785,7 @@ button {
 }
 
 @keyframes shake-lr {
+
   0%,
   25%,
   100% {
@@ -794,6 +818,7 @@ button {
     line-height: 18px;
     font-size: 14px;
     margin-right: 20px;
+
     &:has(span) {
       svg {
         animation: none;
@@ -924,7 +949,7 @@ button {
         display: none;
 
         &:checked {
-          ~ .input-category-box {
+          ~.input-category-box {
             background-color: $primary-color;
 
             svg {
@@ -963,26 +988,23 @@ form {
 
 .skeleton {
   &-card {
+
     &,
     &-edit {
       padding: 12px;
-      @include centralize(
-        $direction: column,
+      @include centralize($direction: column,
         $justify: flex-start,
-        $align: flex-start
-      );
+        $align: flex-start);
       gap: 10px;
       width: 145px;
       height: 279px;
       background-color: $light-gray-color;
       border-radius: 10px;
-      background: linear-gradient(
-        120deg,
-        $light-gray-color 30%,
-        $white-color 38%,
-        $white-color 40%,
-        $light-gray-color 48%
-      );
+      background: linear-gradient(120deg,
+          $light-gray-color 30%,
+          $white-color 38%,
+          $white-color 40%,
+          $light-gray-color 48%);
       background-size: 200% 100%;
       background-position: 100% 0;
       animation: load 1s infinite;
@@ -1143,6 +1165,7 @@ form {
   justify-content: space-between;
   padding-inline: 20px;
   height: 45px;
+
   h3 {
     font-weight: 700;
     font-size: 16px;
@@ -1154,6 +1177,7 @@ form {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
   p {
     white-space: nowrap;
   }
@@ -1166,6 +1190,7 @@ form {
 .layout-content:has(.history-container) {
   overflow-y: scroll;
   padding-bottom: 80px;
+
   &::-webkit-scrollbar {
     width: 5px;
   }
@@ -1193,9 +1218,11 @@ form {
   transition: 0.5s;
 
   position: relative;
+
   @media only screen and (min-width: 1125px) {
     display: none;
   }
+
   img {
     transition: 0.5s;
     top: 5px;
@@ -1208,20 +1235,25 @@ form {
   transition: 0.5s;
   opacity: 0;
 }
+
 .counter-hide {
   transition: 0.5s;
   opacity: 0;
 }
+
 .counter-days {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  transition: 0.5s;
+
   h2 {
     padding-block: 0;
     font-size: 15px;
     color: #fff;
     font-weight: 600;
   }
+
   span {
     color: white;
     font-size: 13px;
