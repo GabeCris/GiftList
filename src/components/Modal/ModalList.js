@@ -44,4 +44,10 @@ export const ModalList = [
     title: "Deseja sair?",
     text: "Você será desconectado do seu acesso de usuário!",
   },
+  {
+    action: "tip",
+    title: "Dica:",
+    onlyButton: true,
+    text: "Ficou em dúvida do que nos dar? Os presentes com o selo destaque são os que mais queremos receber!",
+  },
 ];

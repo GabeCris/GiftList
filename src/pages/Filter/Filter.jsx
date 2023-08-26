@@ -16,6 +16,11 @@ const InitialPage = () => {
   const { openModal } = useModal();
   const { clearData } = useUser();
 
+  const highlightText = (text) => {
+    // Substituir a palavra "destaque" pela mesma palavra envolta em uma tag <span>
+    return text.replace(/destaque/g, "<span>destaque</span>");
+  };
+
   return (
     <Layout title="Categorias">
       <h2 className="layout-content-title">Filtre por categoria</h2>
@@ -40,7 +45,23 @@ const InitialPage = () => {
           </>
         ))}
       </section>
-      <Button label={"Filtrar"} url={"/products"} />
+      <Button
+        label={"Filtrar"}
+        onClick={() => {
+          openModal("tip", () => {
+            navigate("/products");
+            clearData();
+          });
+          setTimeout(() => {
+            const text = document.querySelector(".layout-modal-text");
+
+            if (text) {
+              text.innerHTML = highlightText(text.textContent);
+              console.log("Texto do modal modificado");
+            }
+          }, 100);
+        }}
+      />
       <Button
         label={"Sair"}
         secondary={true}

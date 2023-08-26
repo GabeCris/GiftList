@@ -8,7 +8,6 @@ import { db } from "../../config/firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useFilter } from "../../contexts/FilterContext";
 import Skeleton from "../../components/Skeleton";
-import Popup from "../../components/Popup/Popup";
 
 const Products = () => {
   const usersCollectionsRef = collection(db, "products");
