@@ -91,7 +91,7 @@ const EditProduct = () => {
     setProductPrice(product?.productPrice);
     setProductUrl(product?.productUrl);
     setProductUrlImage(product?.productUrlImage);
-    setProductHighlight(product?.productHighlight)
+    setProductHighlight(product?.productHighlight ?? false)
   }, [product]);
 
   return (
