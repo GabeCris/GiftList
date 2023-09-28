@@ -149,7 +149,7 @@ const EditProduct = () => {
             checked={productHighlight}
             onChange={(e) => setProductHighlight(e.target.checked)}
           />
-          Produto Destaque
+          Produto Importante
         </label>
         <Button
           label={"Editar"}

@@ -48,7 +48,7 @@ export const ModalList = [
     action: "tip",
     title: "Dica:",
     onlyButton: true,
-    text: "Ficou em dúvida do que nos dar? Os presentes com o selo <span>destaque</span> são os que mais queremos receber!",
+    text: "Ficou em dúvida do que nos dar? Presentes com o selo <span>importante</span> são os que mais queremos receber!",
   },
   {
     action: "shipping-info",
