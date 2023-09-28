@@ -749,6 +749,14 @@ button {
         &-label {
           display: none;
         }
+
+        &-secondary{
+          margin: 0;
+          background: none;
+          border-radius: 10px;
+          color: $white-color;
+          border: 1px solid $white-color;
+        }
       }
     }
 

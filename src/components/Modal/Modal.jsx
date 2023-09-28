@@ -5,7 +5,7 @@ import { ModalList } from "./ModalList";
 
 const Modal = () => {
   const { modal, closeModal } = useModal();
-  const { title, text, onlyButton } =
+  const { title, text, onlyButton, action } =
     ModalList?.find((item) => item?.action == modal?.action) ?? {};
 
   const handleButtonClick = () => {
@@ -16,17 +16,19 @@ const Modal = () => {
     closeModal();
   };
 
+  const renderHTML = (html) => ({ __html: html });
+
   return modal ? (
     <div className="layout-modal">
       <div className="layout-modal-box">
         <h3 className="layout-modal-title">{title}</h3>
-        <p className="layout-modal-text">{text}</p>
+        <p
+          className="layout-modal-text"
+          dangerouslySetInnerHTML={renderHTML(text)}
+        />
         {onlyButton ? (
-          <button
-            className="layout-button"
-            onClick={handleButtonClick}
-          >
-            Entendi
+          <button className="layout-button" onClick={handleButtonClick}>
+            {action === "shipping-info" ? "Copiar CEP" :  "Entendi"}
           </button>
         ) : (
           <p className="layout-modal-buttons">

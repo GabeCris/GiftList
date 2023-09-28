@@ -48,6 +48,12 @@ export const ModalList = [
     action: "tip",
     title: "Dica:",
     onlyButton: true,
-    text: "Ficou em dúvida do que nos dar? Os presentes com o selo destaque são os que mais queremos receber!",
+    text: "Ficou em dúvida do que nos dar? Os presentes com o selo <span>destaque</span> são os que mais queremos receber!",
+  },
+  {
+    action: "shipping-info",
+    title: "Endereço de entrega",
+    onlyButton: true,
+    text: "Rua Osvaldo Gonçalves Pereira<br> Nº 58, Jardim Guaraituba<br>Paranaguá - PR<br><br><b>CEP: 83209-332</b>",
   },
 ];

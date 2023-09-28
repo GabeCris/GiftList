@@ -2,15 +2,30 @@ import React, { useEffect, useState } from "react";
 import { useModal } from "../../contexts/ModalContext";
 import useReserve from "../../hooks/useReserve/useReserve";
 import formatPrice from "../../utils/formatPrice/FormatPrice";
+import { useClipBoard } from "react-copy-to-clipboard";
 
 import Button from "../Button";
 import { GiftIcon, GiftOpenIcon } from "../Icons";
 import { useUser } from "../../contexts/UserContext";
 
 const ShelfProduct = ({ props }) => {
+  const [copied, setCopied] = useState(false);
   const { openModal } = useModal();
   const { changeReserve } = useReserve();
   const userId = localStorage.getItem("userId");
+
+  const textToCopy = "83209332";
+
+  const handleCopyClick = () => {
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        setCopied(true);
+      })
+      .catch((error) => {
+        console.error("Erro ao copiar para a área de transferência:", error);
+      });
+  };
 
   const checkUserId = () => {
     return props.userId === userId;
@@ -77,7 +92,9 @@ const ShelfProduct = ({ props }) => {
           : "shelfProduct-reserved"
       }`}
     >
-      {props.productHighlight && <span className="shelfProduct-highlight">Destaque!</span>}
+      {props.productHighlight && (
+        <span className="shelfProduct-highlight">Importante</span>
+      )}
       {changeGiftIcon()}
       <div className="shelfProduct-box-image">
         <img
@@ -93,6 +110,16 @@ const ShelfProduct = ({ props }) => {
       ) : (
         <>
           <Button label="Ver no site" external={true} url={props.productUrl} />
+          <Button
+            secondary={true}
+            label="Endereço de entrega"
+            external={true}
+            onClick={() =>
+              openModal("shipping-info", () => {
+                handleCopyClick();
+              })
+            }
+          />
         </>
       )}
     </div>
