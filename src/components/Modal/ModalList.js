@@ -54,6 +54,6 @@ export const ModalList = [
     action: "shipping-info",
     title: "Endereço de entrega",
     onlyButton: true,
-    text: "Rua Osvaldo Gonçalves Pereira<br> Nº 58, Jardim Guaraituba<br>Paranaguá - PR<br><br><b>CEP: 83209-332</b>",
+    text: "Rua Capivari,<br> Nº 190, Jardim Guaraituba<br>Paranaguá - PR<br><br><b>CEP: 83209-350</b>",
   },
 ];
