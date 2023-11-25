@@ -35,8 +35,8 @@ const ShelfPix = ({ props }) => {
           alt={""}
         />
       </div>
-      <h2 className="shelfProduct-name">Nos envie um:</h2>
-      <p className="shelfProduct-price">PIX</p>
+      {/* <h2 className="shelfProduct-name">Nos envie um:</h2> */}
+      <p className="shelfProduct-price">Enviar PIX</p>
       <Button
         label="Ver Chave"
         external={true}
