@@ -28,7 +28,11 @@ const Modal = () => {
         />
         {onlyButton ? (
           <button className="layout-button" onClick={handleButtonClick}>
-            {action === "shipping-info" ? "Copiar CEP" :  "Entendi"}
+            {action === "shipping-info"
+              ? "Copiar CEP"
+              : action === "pix-info"
+              ? "Copiar CPF"
+              : "Entendi"}
           </button>
         ) : (
           <p className="layout-modal-buttons">

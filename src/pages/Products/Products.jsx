@@ -8,6 +8,7 @@ import { db } from "../../config/firebase";
 import { addDoc, collection, getDocs } from "firebase/firestore";
 import { useFilter } from "../../contexts/FilterContext";
 import Skeleton from "../../components/Skeleton";
+import ShelfPix from "../../components/ShelfPix/ShelfPix";
 
 const Products = () => {
   const usersCollectionsRef = collection(db, "products");
@@ -73,7 +74,6 @@ const Products = () => {
             })
     );
   }, [selected, products]);
-  
 
   const hasReservated = products?.find(
     (item) => item.userId === userId
@@ -83,6 +83,7 @@ const Products = () => {
     <Layout>
       <Filter />
       <section className="products-container">
+        <ShelfPix></ShelfPix>
         {view && Array.from(Array(6)).map(() => <Skeleton />)}
         {filteredProducts?.map((item) => (
           <ShelfProduct props={item} />

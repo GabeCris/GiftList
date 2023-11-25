@@ -56,4 +56,10 @@ export const ModalList = [
     onlyButton: true,
     text: "Rua Capivari,<br> Nº 190, Jardim Guaraituba<br>Paranaguá - PR<br><br><b>CEP: 83209-350</b>",
   },
+  {
+    action: "pix-info",
+    title: "Enviar Pix",
+    onlyButton: true,
+    text: "<b>Dados da conta a receber:</b> <br/><u>Nome:</u> Gabriel Crisanto dos Santos<br/><u>Chave CPF:</u> 134.871.279-11<br/><u>Banco:</u> Bradesco<br/>"
+  },
 ];
